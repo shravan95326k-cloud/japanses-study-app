@@ -254,9 +254,16 @@ body.pet-theme .pet-banner { display: flex; min-height: 42px; padding: 8px; opac
 .chart-panel { min-height: 260px; }
 .panel-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
 .panel-heading h2 { margin: 0; }
-.chart-unit { color: var(--muted); font-size: 0.8rem; padding-top: 4px; }
+.chart-switcher { display: flex; gap: 3px; padding: 3px; border: 1px solid var(--border); border-radius: 9px; background: var(--soft); }
+.chart-range { width: auto; padding: 5px 8px; border-radius: 6px; background: transparent; color: var(--muted); font-size: 0.72rem; }
+.chart-range.active { background: var(--primary); color: white; }
 .activity-chart { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; align-items: end; height: 166px; margin-top: 20px; }
+.activity-chart.month-view { grid-template-columns: repeat(30, minmax(5px, 1fr)); gap: 3px; }
 .chart-column { display: grid; grid-template-rows: 1fr auto auto; gap: 6px; min-width: 0; height: 100%; text-align: center; color: var(--muted); font-size: 0.76rem; }
+.month-view .chart-column { gap: 3px; font-size: 0.62rem; }
+.month-view .chart-column strong { font-size: 0.6rem; }
+.month-view .chart-column strong { visibility: hidden; }
+.month-view .chart-column:nth-child(5n + 1) strong { visibility: visible; }
 .chart-column strong { color: var(--text); font-size: 0.78rem; font-variant-numeric: tabular-nums; }
 .bar-track { display: flex; align-items: end; height: 100%; border-bottom: 1px solid var(--border); background: linear-gradient(to top, var(--soft), transparent); border-radius: 8px 8px 0 0; overflow: hidden; }
 .activity-bar { width: 100%; min-height: 4px; border-radius: 7px 7px 0 0; background: linear-gradient(to top, var(--primary), #8bd6a8); transition: height 0.5s ease; }
@@ -460,6 +467,7 @@ button.danger {
   .two-col { grid-template-columns: 1fr; gap: 0; }
   .chart-grid { grid-template-columns: 1fr; }
   .activity-chart { gap: 6px; }
+  .activity-chart.month-view { gap: 2px; }
 }
 
 .recent-section {

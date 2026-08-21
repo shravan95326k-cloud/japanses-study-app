@@ -88,9 +88,12 @@
           <div class="panel-heading">
             <div>
               <p class="eyebrow">Consistency check</p>
-              <h2>Last 7 days</h2>
+              <h2 id="activityHeading">Last 7 days</h2>
             </div>
-            <span class="chart-unit">Minutes</span>
+            <div class="chart-switcher" role="group" aria-label="Activity range">
+              <button class="chart-range active" type="button" data-range="week">7D</button>
+              <button class="chart-range" type="button" data-range="month">30D</button>
+            </div>
           </div>
           <div class="activity-chart" id="activityChart" aria-label="Study minutes for the last seven days">
             {% set max_minutes = stats.weekly_activity | map(attribute='minutes') | max %}

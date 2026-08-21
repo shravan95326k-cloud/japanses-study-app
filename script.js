@@ -8,7 +8,8 @@ async function updateDashboard() {
   document.body.dataset.streak = data.streak;
   document.getElementById('completionRate').textContent = `${data.completion_percent}%`;
   document.getElementById('topCategory').textContent = data.top_category.replace(/\b\w/g, (letter) => letter.toUpperCase());
-  renderActivityChart(data.weekly_activity);
+  activityData = data;
+  renderActivityChart(data[activeRange === 'week' ? 'weekly_activity' : 'monthly_activity']);
 }
 
 const greeting = document.getElementById('greeting');
@@ -23,10 +24,17 @@ const timerStart = document.getElementById('timerStart');
 const timerReset = document.getElementById('timerReset');
 const presets = document.querySelectorAll('.preset');
 const themeSwatches = document.querySelectorAll('.theme-swatch');
+<<<<<<< Updated upstream
 const petThemeToggle = document.getElementById('petThemeToggle');
 const kanaThemeToggle = document.getElementById('kanaThemeToggle');
 const petBanner = document.getElementById('petBanner');
+=======
+const chartRanges = document.querySelectorAll('.chart-range');
+const activityHeading = document.getElementById('activityHeading');
+>>>>>>> Stashed changes
 let streak = Number(document.body.dataset.streak || 0);
+let activeRange = 'week';
+let activityData = { weekly_activity: [], monthly_activity: [] };
 
 let timerSeconds = 25 * 60;
 let timerTotalSeconds = timerSeconds;
@@ -35,6 +43,7 @@ let timerInterval = null;
 function renderActivityChart(activity) {
   const chart = document.getElementById('activityChart');
   const maxMinutes = Math.max(...activity.map((day) => day.minutes), 1);
+  chart.classList.toggle('month-view', activeRange === 'month');
   chart.innerHTML = activity.map((day) => `
     <div class="chart-column${day.date === new Date().toISOString().slice(0, 10) ? ' today' : ''}" title="${day.date}: ${day.minutes} minutes">
       <div class="bar-track"><div class="activity-bar" style="height: ${Math.max((day.minutes / maxMinutes) * 100, 4)}%"></div></div>
@@ -43,6 +52,15 @@ function renderActivityChart(activity) {
     </div>
   `).join('');
 }
+
+chartRanges.forEach((rangeButton) => {
+  rangeButton.addEventListener('click', () => {
+    activeRange = rangeButton.dataset.range;
+    chartRanges.forEach((item) => item.classList.toggle('active', item === rangeButton));
+    activityHeading.textContent = activeRange === 'week' ? 'Last 7 days' : 'Last 30 days';
+    renderActivityChart(activityData[activeRange === 'week' ? 'weekly_activity' : 'monthly_activity']);
+  });
+});
 
 function updateTime() {
   const now = new Date();
@@ -157,5 +175,6 @@ presets.forEach((preset) => {
 
 updateTime();
 renderTimer();
+updateDashboard();
 setInterval(updateTime, 1000);
 setInterval(updateDashboard, 10000);
