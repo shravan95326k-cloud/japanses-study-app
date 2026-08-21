@@ -10,6 +10,7 @@ A focused, friendly dashboard for building a consistent Japanese study habit. Lo
 - Study session logging by grammar, vocabulary, kanji, or dokkai
 - Daily plan checklist with completion percentage
 - Study minutes, session count, score, and streak tracking
+- Seven-day activity chart and daily category insight
 - SQLite persistence with a small JSON dashboard API
 - Responsive layout with reduced-motion support
 

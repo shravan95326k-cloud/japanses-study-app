@@ -6,7 +6,7 @@
     <title>Japan Study Companion</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
   </head>
-  <body>
+  <body data-streak="{{ stats.streak }}">
     <div class="container">
       <header class="header">
         <div>
@@ -27,6 +27,12 @@
           </button>
         </div>
       </header>
+      <div class="theme-picker" aria-label="Color theme">
+        <span>Color</span>
+        <button class="theme-swatch moss" type="button" data-theme="moss" aria-label="Moss theme" title="Moss theme"></button>
+        <button class="theme-swatch sakura" type="button" data-theme="sakura" aria-label="Sakura theme" title="Sakura theme"></button>
+        <button class="theme-swatch ocean" type="button" data-theme="ocean" aria-label="Ocean theme" title="Ocean theme"></button>
+      </div>
 
       <section class="focus-bar" aria-labelledby="focusHeading">
         <div class="focus-copy">
@@ -66,6 +72,35 @@
         <div class="card">
           <span>Plan completion</span>
           <strong id="completionRate">{{ stats.completion_percent }}%</strong>
+        </div>
+      </section>
+
+      <section class="chart-grid">
+        <div class="card chart-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Consistency check</p>
+              <h2>Last 7 days</h2>
+            </div>
+            <span class="chart-unit">Minutes</span>
+          </div>
+          <div class="activity-chart" id="activityChart" aria-label="Study minutes for the last seven days">
+            {% set max_minutes = stats.weekly_activity | map(attribute='minutes') | max %}
+            {% for day in stats.weekly_activity %}
+              <div class="chart-column{% if loop.last %} today{% endif %}" title="{{ day.date }}: {{ day.minutes }} minutes">
+                <div class="bar-track"><div class="activity-bar" style="height: {{ (day.minutes / max_minutes * 100) if max_minutes else 4 }}%"></div></div>
+                <strong>{{ day.minutes }}</strong>
+                <span>{{ day.label }}</span>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="card insight-card">
+          <p class="eyebrow">Today's insight</p>
+          <h2>Keep your rhythm visible.</h2>
+          <p>Your strongest focus today is</p>
+          <strong class="insight-value" id="topCategory">{{ stats.top_category | title }}</strong>
+          <p class="insight-note">Small, repeatable sessions are how fluency compounds.</p>
         </div>
       </section>
 

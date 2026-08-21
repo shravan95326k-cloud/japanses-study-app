@@ -5,7 +5,10 @@ async function updateDashboard() {
   document.getElementById('totalMinutes').textContent = `${data.total_minutes}`;
   document.getElementById('totalSessions').textContent = `${data.total_sessions}`;
   document.getElementById('streakDays').textContent = `${data.streak} days`;
+  document.body.dataset.streak = data.streak;
   document.getElementById('completionRate').textContent = `${data.completion_percent}%`;
+  document.getElementById('topCategory').textContent = data.top_category.replace(/\b\w/g, (letter) => letter.toUpperCase());
+  renderActivityChart(data.weekly_activity);
 }
 
 const greeting = document.getElementById('greeting');
@@ -19,16 +22,31 @@ const timerRing = document.getElementById('timerRing');
 const timerStart = document.getElementById('timerStart');
 const timerReset = document.getElementById('timerReset');
 const presets = document.querySelectorAll('.preset');
+const themeSwatches = document.querySelectorAll('.theme-swatch');
+let streak = Number(document.body.dataset.streak || 0);
 
 let timerSeconds = 25 * 60;
 let timerTotalSeconds = timerSeconds;
 let timerInterval = null;
 
+function renderActivityChart(activity) {
+  const chart = document.getElementById('activityChart');
+  const maxMinutes = Math.max(...activity.map((day) => day.minutes), 1);
+  chart.innerHTML = activity.map((day) => `
+    <div class="chart-column${day.date === new Date().toISOString().slice(0, 10) ? ' today' : ''}" title="${day.date}: ${day.minutes} minutes">
+      <div class="bar-track"><div class="activity-bar" style="height: ${Math.max((day.minutes / maxMinutes) * 100, 4)}%"></div></div>
+      <strong>${day.minutes}</strong>
+      <span>${day.label}</span>
+    </div>
+  `).join('');
+}
+
 function updateTime() {
   const now = new Date();
   const hour = now.getHours();
+  streak = Number(document.body.dataset.streak || 0);
   const greetingText = hour < 12 ? 'Good morning, learner.' : hour < 18 ? 'Good afternoon, learner.' : 'Good evening, learner.';
-  greeting.textContent = greetingText;
+  greeting.textContent = streak ? `${greetingText} You are on a ${streak}-day streak.` : greetingText;
   liveDate.textContent = now.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' });
   liveClock.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 }
@@ -54,6 +72,18 @@ themeToggle.addEventListener('click', () => {
   themeIcon.textContent = isDark ? '\u2600' : '\u263e';
   themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
 });
+
+function applyColorTheme(theme) {
+  document.body.dataset.colorTheme = theme;
+  localStorage.setItem('japanese-study-color-theme', theme);
+  themeSwatches.forEach((swatch) => swatch.classList.toggle('active', swatch.dataset.theme === theme));
+}
+
+themeSwatches.forEach((swatch) => {
+  swatch.addEventListener('click', () => applyColorTheme(swatch.dataset.theme));
+});
+
+applyColorTheme(localStorage.getItem('japanese-study-color-theme') || 'moss');
 
 if (localStorage.getItem('japanese-study-theme') === 'dark') {
   document.body.classList.add('dark-mode');
