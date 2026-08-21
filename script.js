@@ -24,33 +24,38 @@ const timerStart = document.getElementById('timerStart');
 const timerReset = document.getElementById('timerReset');
 const presets = document.querySelectorAll('.preset');
 const themeSwatches = document.querySelectorAll('.theme-swatch');
-<<<<<<< Updated upstream
 const petThemeToggle = document.getElementById('petThemeToggle');
 const kanaThemeToggle = document.getElementById('kanaThemeToggle');
 const petBanner = document.getElementById('petBanner');
-=======
 const chartRanges = document.querySelectorAll('.chart-range');
 const activityHeading = document.getElementById('activityHeading');
->>>>>>> Stashed changes
+
 let streak = Number(document.body.dataset.streak || 0);
 let activeRange = 'week';
 let activityData = { weekly_activity: [], monthly_activity: [] };
-
 let timerSeconds = 25 * 60;
 let timerTotalSeconds = timerSeconds;
 let timerInterval = null;
 
 function renderActivityChart(activity) {
   const chart = document.getElementById('activityChart');
+  if (!chart || !activity || !activity.length) {
+    return;
+  }
+
   const maxMinutes = Math.max(...activity.map((day) => day.minutes), 1);
   chart.classList.toggle('month-view', activeRange === 'month');
-  chart.innerHTML = activity.map((day) => `
-    <div class="chart-column${day.date === new Date().toISOString().slice(0, 10) ? ' today' : ''}" title="${day.date}: ${day.minutes} minutes">
-      <div class="bar-track"><div class="activity-bar" style="height: ${Math.max((day.minutes / maxMinutes) * 100, 4)}%"></div></div>
-      <strong>${day.minutes}</strong>
-      <span>${day.label}</span>
-    </div>
-  `).join('');
+  chart.innerHTML = activity
+    .map(
+      (day) => `
+        <div class="chart-column${day.date === new Date().toISOString().slice(0, 10) ? ' today' : ''}" title="${day.date}: ${day.minutes} minutes">
+          <div class="bar-track"><div class="activity-bar" style="height: ${Math.max((day.minutes / maxMinutes) * 100, 4)}%"></div></div>
+          <strong>${day.minutes}</strong>
+          <span>${day.label}</span>
+        </div>
+      `,
+    )
+    .join('');
 }
 
 chartRanges.forEach((rangeButton) => {
@@ -87,11 +92,15 @@ function stopTimer(message) {
   timerStatus.textContent = message;
 }
 
+function applyDarkMode(enabled) {
+  document.body.classList.toggle('dark-mode', enabled);
+  localStorage.setItem('japanese-study-theme', enabled ? 'dark' : 'light');
+  themeIcon.textContent = enabled ? '\u2600' : '\u263e';
+  themeToggle.setAttribute('aria-label', enabled ? 'Switch to light mode' : 'Switch to dark mode');
+}
+
 themeToggle.addEventListener('click', () => {
-  const isDark = document.body.classList.toggle('dark-mode');
-  localStorage.setItem('japanese-study-theme', isDark ? 'dark' : 'light');
-  themeIcon.textContent = isDark ? '\u2600' : '\u263e';
-  themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+  applyDarkMode(!document.body.classList.contains('dark-mode'));
 });
 
 function applyColorTheme(theme) {
@@ -105,6 +114,7 @@ themeSwatches.forEach((swatch) => {
 });
 
 applyColorTheme(localStorage.getItem('japanese-study-color-theme') || 'moss');
+applyDarkMode(localStorage.getItem('japanese-study-theme') === 'dark');
 
 function setThemeToggleState(toggle, enabled) {
   toggle.setAttribute('aria-pressed', enabled ? 'true' : 'false');
@@ -113,7 +123,9 @@ function setThemeToggleState(toggle, enabled) {
 
 function applyPetTheme(enabled) {
   document.body.classList.toggle('pet-theme', enabled);
-  petBanner.setAttribute('aria-hidden', enabled ? 'false' : 'true');
+  if (petBanner) {
+    petBanner.setAttribute('aria-hidden', enabled ? 'false' : 'true');
+  }
   localStorage.setItem('japanese-study-pet-theme', enabled ? 'on' : 'off');
   setThemeToggleState(petThemeToggle, enabled);
 }
@@ -129,25 +141,21 @@ kanaThemeToggle.addEventListener('click', () => applyKanaTheme(!document.body.cl
 applyPetTheme(localStorage.getItem('japanese-study-pet-theme') === 'on');
 applyKanaTheme(localStorage.getItem('japanese-study-kana-theme') === 'on');
 
-if (localStorage.getItem('japanese-study-theme') === 'dark') {
-  document.body.classList.add('dark-mode');
-  themeIcon.textContent = '\u2600';
-  themeToggle.setAttribute('aria-label', 'Switch to light mode');
-}
-
 timerStart.addEventListener('click', () => {
   if (timerInterval) {
     stopTimer('Focus paused. Come back when you are ready.');
     return;
   }
+
   timerStart.textContent = 'Pause';
   timerStatus.textContent = 'You are in a focus session. Keep going.';
   timerInterval = setInterval(() => {
     timerSeconds -= 1;
     renderTimer();
+
     if (timerSeconds <= 0) {
       stopTimer('Session complete. Nice work today.');
-        timerRing.classList.add('complete');
+      timerRing.classList.add('complete');
       timerSeconds = 0;
       renderTimer();
     }
