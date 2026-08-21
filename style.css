@@ -49,6 +49,25 @@ body[data-color-theme="ocean"] {
 
 body.dark-mode[data-color-theme="sakura"] { --bg: #2b1c25; --panel: #38242f; --border: #5b3a49; --soft: #432b38; }
 body.dark-mode[data-color-theme="ocean"] { --bg: #172a34; --panel: #203b48; --border: #355969; --soft: #284956; }
+body.kana-theme {
+  background-image: radial-gradient(circle at 90% 0%, rgba(215, 237, 114, 0.28), transparent 30%), linear-gradient(135deg, rgba(23, 107, 91, 0.035) 25%, transparent 25%) 0 0 / 28px 28px, repeating-linear-gradient(115deg, transparent 0 68px, rgba(23, 107, 91, 0.055) 68px 70px), var(--bg);
+}
+body.kana-theme::before {
+  content: "漢 ひ 学 日 あ 本 語 ね こ 文 い ぬ";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: var(--primary);
+  opacity: 0.045;
+  font-family: Georgia, serif;
+  font-size: clamp(2rem, 7vw, 6rem);
+  letter-spacing: 1.2rem;
+  pointer-events: none;
+  transform: rotate(-12deg) scale(1.2);
+}
 
 * {
   box-sizing: border-box;
@@ -124,6 +143,14 @@ h1 {
 .theme-swatch.moss { background: linear-gradient(135deg, #176b5b 50%, #d7ed72 50%); }
 .theme-swatch.sakura { background: linear-gradient(135deg, #a43d61 50%, #ffd0a8 50%); }
 .theme-swatch.ocean { background: linear-gradient(135deg, #17658a 50%, #f5d76e 50%); }
+.theme-feature { width: auto; min-width: 44px; padding: 5px 8px; border: 1px solid var(--border); background: var(--panel); color: var(--text); font-size: 0.9rem; }
+.theme-feature.active { background: var(--primary-soft); border-color: var(--primary); }
+.pet-banner { display: none; align-items: center; justify-content: center; gap: 12px; min-height: 0; margin: -4px 0 20px; padding: 0; border-radius: 14px; background: linear-gradient(90deg, transparent, var(--primary-soft), transparent); color: var(--primary); opacity: 0; }
+body.pet-theme .pet-banner { display: flex; min-height: 42px; padding: 8px; opacity: 1; animation: rise-in 0.5s ease both; }
+.pet { font-size: 1.45rem; line-height: 1; }
+.pet-note { font-size: 0.86rem; font-weight: 700; }
+.pet-cat { animation: pet-bob 2.4s ease-in-out infinite; }
+.pet-dog { animation: pet-bob 2.4s 0.3s ease-in-out infinite; }
 
 .date-chip {
   background: var(--primary-soft);
@@ -405,6 +432,11 @@ button.danger {
   70% { transform: scale(0.98) rotate(-2deg); }
 }
 
+@keyframes pet-bob {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-3px) rotate(3deg); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -421,6 +453,8 @@ button.danger {
   .date-chip { padding: 7px 9px; }
   .date-copy { font-size: 0.7rem; }
   .date-copy span:last-child { font-size: 0.78rem; }
+  .theme-picker { flex-wrap: wrap; }
+  .pet-note { font-size: 0.75rem; }
   .focus-bar { padding: 22px 18px; flex-direction: column; align-items: stretch; }
   .timer { min-width: 0; }
   .two-col { grid-template-columns: 1fr; gap: 0; }

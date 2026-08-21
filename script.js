@@ -23,6 +23,9 @@ const timerStart = document.getElementById('timerStart');
 const timerReset = document.getElementById('timerReset');
 const presets = document.querySelectorAll('.preset');
 const themeSwatches = document.querySelectorAll('.theme-swatch');
+const petThemeToggle = document.getElementById('petThemeToggle');
+const kanaThemeToggle = document.getElementById('kanaThemeToggle');
+const petBanner = document.getElementById('petBanner');
 let streak = Number(document.body.dataset.streak || 0);
 
 let timerSeconds = 25 * 60;
@@ -84,6 +87,29 @@ themeSwatches.forEach((swatch) => {
 });
 
 applyColorTheme(localStorage.getItem('japanese-study-color-theme') || 'moss');
+
+function setThemeToggleState(toggle, enabled) {
+  toggle.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+  toggle.classList.toggle('active', enabled);
+}
+
+function applyPetTheme(enabled) {
+  document.body.classList.toggle('pet-theme', enabled);
+  petBanner.setAttribute('aria-hidden', enabled ? 'false' : 'true');
+  localStorage.setItem('japanese-study-pet-theme', enabled ? 'on' : 'off');
+  setThemeToggleState(petThemeToggle, enabled);
+}
+
+function applyKanaTheme(enabled) {
+  document.body.classList.toggle('kana-theme', enabled);
+  localStorage.setItem('japanese-study-kana-theme', enabled ? 'on' : 'off');
+  setThemeToggleState(kanaThemeToggle, enabled);
+}
+
+petThemeToggle.addEventListener('click', () => applyPetTheme(!document.body.classList.contains('pet-theme')));
+kanaThemeToggle.addEventListener('click', () => applyKanaTheme(!document.body.classList.contains('kana-theme')));
+applyPetTheme(localStorage.getItem('japanese-study-pet-theme') === 'on');
+applyKanaTheme(localStorage.getItem('japanese-study-kana-theme') === 'on');
 
 if (localStorage.getItem('japanese-study-theme') === 'dark') {
   document.body.classList.add('dark-mode');
