@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Japan Study Companion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div>
+          <p class="eyebrow">Daily Japanese learning system</p>
+          <h1>Japan Study Companion</h1>
+          <p class="greeting" id="greeting">Good day, learner.</p>
+        </div>
+        <div class="header-actions">
+          <div class="date-chip"><span class="clock-icon">&#9679;</span><span id="liveClock">--:--:--</span></div>
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" title="Switch theme">
+            <span class="theme-icon" aria-hidden="true">&#9790;</span>
+          </button>
+        </div>
+      </header>
+
+      <section class="focus-bar" aria-labelledby="focusHeading">
+        <div class="focus-copy">
+          <p class="eyebrow">Focus session</p>
+          <h2 id="focusHeading">Make a little progress today.</h2>
+          <p id="timerStatus">Choose a session length and begin when you are ready.</p>
+        </div>
+        <div class="timer" aria-label="Study timer">
+          <div class="timer-ring" id="timerRing">
+            <span id="timerDisplay">25:00</span>
+          </div>
+          <div class="timer-controls">
+            <button class="timer-primary" id="timerStart" type="button">Start focus</button>
+            <button class="timer-secondary" id="timerReset" type="button">Reset</button>
+          </div>
+          <div class="timer-presets" role="group" aria-label="Timer duration">
+            <button class="preset active" type="button" data-minutes="25">25 min</button>
+            <button class="preset" type="button" data-minutes="5">5 min</button>
+            <button class="preset" type="button" data-minutes="50">50 min</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="dashboard" id="dashboard">
+        <div class="card accent">
+          <span>Total study minutes</span>
+          <strong id="totalMinutes">{{ stats.total_minutes }}</strong>
+        </div>
+        <div class="card">
+          <span>Study sessions</span>
+          <strong id="totalSessions">{{ stats.total_sessions }}</strong>
+        </div>
+        <div class="card">
+          <span>Current streak</span>
+          <strong id="streakDays">{{ stats.streak }} days</strong>
+        </div>
+        <div class="card">
+          <span>Plan completion</span>
+          <strong id="completionRate">{{ stats.completion_percent }}%</strong>
+        </div>
+      </section>
+
+      <section class="stats-grid">
+        <div class="card panel">
+          <h2>Study by category</h2>
+          <div class="category-list">
+            <div class="metric-row">
+              <label>Grammar</label>
+              <span>{{ stats.category_totals.grammar }} min</span>
+            </div>
+            <div class="metric-row">
+              <label>Vocabulary</label>
+              <span>{{ stats.category_totals.vocabulary }} min</span>
+            </div>
+            <div class="metric-row">
+              <label>Kanji</label>
+              <span>{{ stats.category_totals.kanji }} min</span>
+            </div>
+            <div class="metric-row">
+              <label>Dokkai</label>
+              <span>{{ stats.category_totals.dokkai }} min</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card panel">
+          <h2>Today's plan</h2>
+          {% if stats.plans %}
+            <ul class="plan-list">
+              {% for item in stats.plans %}
+                <li>
+                  <form action="/toggle_plan/{{ item.id }}" method="post">
+                    <label>
+                      <input type="checkbox" name="completed" {% if item.completed %}checked{% endif %} onchange="this.form.submit()" />
+                      <span>{{ item.focus }}: {{ item.task }}</span>
+                    </label>
+                  </form>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p>No plan yet. Add your daily study goals.</p>
+          {% endif %}
+        </div>
+      </section>
+
+      <section class="form-grid">
+        <div class="card">
+          <h2>Log study progress</h2>
+          <form action="/add_session" method="post">
+            <div class="field-row">
+              <label>Category</label>
+              <select name="category">
+                <option value="grammar">Grammar</option>
+                <option value="vocabulary">Vocabulary</option>
+                <option value="kanji">Kanji</option>
+                <option value="dokkai">Dokkai</option>
+              </select>
+            </div>
+            <div class="field-row">
+              <label>Topic</label>
+              <input type="text" name="title" placeholder="Example: JLPT N5 verbs" required />
+            </div>
+            <div class="field-row two-col">
+              <div>
+                <label>Minutes</label>
+                <input type="number" name="minutes" value="30" min="1" />
+              </div>
+              <div>
+                <label>Score</label>
+                <input type="number" name="score" value="80" min="0" max="100" />
+              </div>
+            </div>
+            <div class="field-row">
+              <label>Notes</label>
+              <textarea name="notes" rows="3" placeholder="What did you learn?"></textarea>
+            </div>
+            <button type="submit">Save session</button>
+          </form>
+        </div>
+
+        <div class="card">
+          <h2>Plan today</h2>
+          <form action="/save_plan" method="post">
+            <div class="field-row">
+              <label>Focus area</label>
+              <input type="text" name="focus" placeholder="Example: Grammar" />
+            </div>
+            <div class="field-row">
+              <label>Task</label>
+              <textarea name="task" rows="4" placeholder="Example: Study 10 basic sentence patterns and write 5 example sentences" required></textarea>
+            </div>
+            <button type="submit">Add daily plan</button>
+          </form>
+
+          <form action="/reset" method="post" class="reset-form">
+            <button type="submit" class="danger">Reset data</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="card recent-section">
+        <h2>Recent sessions</h2>
+        {% if stats.sessions %}
+          <div class="session-list">
+            {% for item in stats.sessions %}
+              <div class="session-item">
+                <div>
+                  <strong>{{ item.title }}</strong>
+                  <p>{{ item.category }} · {{ item.minutes }} minutes</p>
+                </div>
+                <span>{{ item.score }}/100</span>
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p>No study log yet. Start with your first lesson.</p>
+        {% endif %}
+      </section>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
