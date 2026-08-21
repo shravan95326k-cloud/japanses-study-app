@@ -6,7 +6,7 @@ from typing import Dict, List
 
 from flask import Flask, jsonify, render_template, request
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder=".", static_folder=".", static_url_path="")
 DATABASE = "study_tracker.db"
 
 

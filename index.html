@@ -15,7 +15,13 @@
           <p class="greeting" id="greeting">Good day, learner.</p>
         </div>
         <div class="header-actions">
-          <div class="date-chip"><span class="clock-icon">&#9679;</span><span id="liveClock">--:--:--</span></div>
+          <div class="date-chip">
+            <span class="clock-icon" aria-hidden="true">&#9679;</span>
+            <span class="date-copy">
+              <span id="liveDate">Loading date</span>
+              <span id="liveClock">--:--:--</span>
+            </span>
+          </div>
           <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" title="Switch theme">
             <span class="theme-icon" aria-hidden="true">&#9790;</span>
           </button>

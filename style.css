@@ -1,11 +1,12 @@
 :root {
-  --bg: #f4f5f0;
+  --bg: #f4f1e9;
   --panel: #ffffff;
-  --border: #dce2d5;
+  --border: #d9dfd6;
   --primary: #176b5b;
   --primary-soft: #e1f0e9;
   --text: #20332f;
   --muted: #687873;
+  --coral: #e66d5b;
   --success: #10b981;
   --danger: #ef4444;
   --shadow: 0 14px 30px rgba(32, 51, 47, 0.08);
@@ -37,7 +38,7 @@ body.dark-mode {
 body {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  background: radial-gradient(circle at 90% 0%, rgba(215, 237, 114, 0.18), transparent 30%), var(--bg);
+  background: radial-gradient(circle at 90% 0%, rgba(215, 237, 114, 0.28), transparent 30%), linear-gradient(135deg, rgba(230, 109, 91, 0.05) 25%, transparent 25%) 0 0 / 28px 28px, var(--bg);
   color: var(--text);
   transition: background 0.35s ease, color 0.35s ease;
 }
@@ -92,8 +93,8 @@ h1 {
   background: var(--primary-soft);
   border: 1px solid var(--border);
   color: var(--primary);
-  padding: 10px 16px;
-  border-radius: 999px;
+  padding: 8px 14px;
+  border-radius: 12px;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -101,6 +102,8 @@ h1 {
 }
 
 .clock-icon { color: var(--primary); font-size: 10px; }
+.date-copy { display: grid; gap: 2px; text-align: right; font-size: 0.78rem; }
+.date-copy span:last-child { font-size: 0.92rem; font-variant-numeric: tabular-nums; }
 
 .theme-toggle {
   width: 44px;
@@ -164,6 +167,7 @@ h1 {
 }
 .timer-ring::before { content: ""; position: absolute; inset: 7px; border-radius: 50%; background: var(--focus-panel); }
 .timer-ring span { position: relative; font-size: 1.75rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.timer-ring.complete { animation: celebrate 0.8s ease both; }
 .timer-controls { display: flex; gap: 8px; justify-content: center; }
 .timer-controls button { width: auto; padding: 10px 14px; }
 .timer-primary { background: var(--focus-accent); color: #20332f; }
@@ -194,9 +198,12 @@ h1 {
 }
 
 .card:hover { transform: translateY(-2px); }
+.card:nth-child(2) { animation-delay: 0.08s; }
+.card:nth-child(3) { animation-delay: 0.16s; }
+.card:nth-child(4) { animation-delay: 0.24s; }
 
 .card.accent {
-  background: linear-gradient(135deg, #176b5b 0%, #2b8c6f 100%);
+  background: linear-gradient(135deg, #176b5b 0%, #2b8c6f 72%, var(--coral) 150%);
   color: white;
 }
 
@@ -299,6 +306,14 @@ button:hover {
   transform: translateY(-1px);
 }
 
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(230, 109, 91, 0.35);
+  outline-offset: 2px;
+}
+
 button.danger {
   background: var(--danger);
 }
@@ -316,6 +331,38 @@ button.danger {
 .session-item p {
   margin: 4px 0 0;
   color: var(--muted);
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes celebrate {
+  0%, 100% { transform: scale(1); }
+  45% { transform: scale(1.08) rotate(3deg); }
+  70% { transform: scale(0.98) rotate(-2deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 680px) {
+  .container { padding: 24px 14px 44px; }
+  .header { align-items: flex-start; gap: 16px; }
+  h1 { font-size: 1.75rem; }
+  .header-actions { flex-shrink: 0; }
+  .date-chip { padding: 7px 9px; }
+  .date-copy { font-size: 0.7rem; }
+  .date-copy span:last-child { font-size: 0.78rem; }
+  .focus-bar { padding: 22px 18px; flex-direction: column; align-items: stretch; }
+  .timer { min-width: 0; }
+  .two-col { grid-template-columns: 1fr; gap: 0; }
 }
 
 .recent-section {

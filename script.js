@@ -9,6 +9,7 @@ async function updateDashboard() {
 }
 
 const greeting = document.getElementById('greeting');
+const liveDate = document.getElementById('liveDate');
 const liveClock = document.getElementById('liveClock');
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon = themeToggle.querySelector('.theme-icon');
@@ -28,6 +29,7 @@ function updateTime() {
   const hour = now.getHours();
   const greetingText = hour < 12 ? 'Good morning, learner.' : hour < 18 ? 'Good afternoon, learner.' : 'Good evening, learner.';
   greeting.textContent = greetingText;
+  liveDate.textContent = now.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' });
   liveClock.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 }
 
@@ -71,6 +73,7 @@ timerStart.addEventListener('click', () => {
     renderTimer();
     if (timerSeconds <= 0) {
       stopTimer('Session complete. Nice work today.');
+        timerRing.classList.add('complete');
       timerSeconds = 0;
       renderTimer();
     }
@@ -79,6 +82,7 @@ timerStart.addEventListener('click', () => {
 
 timerReset.addEventListener('click', () => {
   stopTimer('Choose a session length and begin when you are ready.');
+  timerRing.classList.remove('complete');
   timerSeconds = timerTotalSeconds;
   renderTimer();
 });
@@ -86,6 +90,7 @@ timerReset.addEventListener('click', () => {
 presets.forEach((preset) => {
   preset.addEventListener('click', () => {
     stopTimer('Choose a session length and begin when you are ready.');
+    timerRing.classList.remove('complete');
     timerTotalSeconds = Number(preset.dataset.minutes) * 60;
     timerSeconds = timerTotalSeconds;
     presets.forEach((item) => item.classList.remove('active'));
