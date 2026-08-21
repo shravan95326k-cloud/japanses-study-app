@@ -32,6 +32,14 @@
         <button class="theme-swatch moss" type="button" data-theme="moss" aria-label="Moss theme" title="Moss theme"></button>
         <button class="theme-swatch sakura" type="button" data-theme="sakura" aria-label="Sakura theme" title="Sakura theme"></button>
         <button class="theme-swatch ocean" type="button" data-theme="ocean" aria-label="Ocean theme" title="Ocean theme"></button>
+        <button class="theme-feature" id="petThemeToggle" type="button" aria-pressed="false" title="Toggle cat and dog accents">&#128049; &#128054;</button>
+        <button class="theme-feature" id="kanaThemeToggle" type="button" aria-pressed="false" title="Toggle Japanese character background">&#28450; &#12354;</button>
+      </div>
+
+      <div class="pet-banner" id="petBanner" aria-hidden="true">
+        <span class="pet pet-cat">&#128049;</span>
+        <span class="pet-note">Study buddies are cheering you on</span>
+        <span class="pet pet-dog">&#128054;</span>
       </div>
 
       <section class="focus-bar" aria-labelledby="focusHeading">
@@ -80,9 +88,12 @@
           <div class="panel-heading">
             <div>
               <p class="eyebrow">Consistency check</p>
-              <h2>Last 7 days</h2>
+              <h2 id="activityHeading">Last 7 days</h2>
             </div>
-            <span class="chart-unit">Minutes</span>
+            <div class="chart-switcher" role="group" aria-label="Activity range">
+              <button class="chart-range active" type="button" data-range="week">7D</button>
+              <button class="chart-range" type="button" data-range="month">30D</button>
+            </div>
           </div>
           <div class="activity-chart" id="activityChart" aria-label="Study minutes for the last seven days">
             {% set max_minutes = stats.weekly_activity | map(attribute='minutes') | max %}

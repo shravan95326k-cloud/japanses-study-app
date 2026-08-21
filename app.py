@@ -73,19 +73,24 @@ def get_dashboard_stats() -> Dict[str, object]:
         total_sessions = len(sessions)
         total_score = sum(int(item["score"]) for item in sessions)
         top_category = max(category_totals, key=category_totals.get) if total_minutes else "Ready to begin"
-        weekly_activity = []
-        for days_ago in range(6, -1, -1):
-            activity_date = date.today() - timedelta(days=days_ago)
-            activity_key = activity_date.isoformat()
-            activity_minutes = connection.execute(
-                "SELECT COALESCE(SUM(minutes), 0) FROM study_sessions WHERE date = ?",
-                (activity_key,),
-            ).fetchone()[0]
-            weekly_activity.append({
-                "date": activity_key,
-                "label": activity_date.strftime("%a"),
-                "minutes": int(activity_minutes),
-            })
+        def build_activity(days: int) -> List[Dict[str, object]]:
+            activity = []
+            for days_ago in range(days - 1, -1, -1):
+                activity_date = date.today() - timedelta(days=days_ago)
+                activity_key = activity_date.isoformat()
+                activity_minutes = connection.execute(
+                    "SELECT COALESCE(SUM(minutes), 0) FROM study_sessions WHERE date = ?",
+                    (activity_key,),
+                ).fetchone()[0]
+                activity.append({
+                    "date": activity_key,
+                    "label": activity_date.strftime("%d" if days > 7 else "%a"),
+                    "minutes": int(activity_minutes),
+                })
+            return activity
+
+        weekly_activity = build_activity(7)
+        monthly_activity = build_activity(30)
 
         completed_plan_count = sum(1 for item in plans if item["completed"])
         plan_total = len(plans)
@@ -119,6 +124,7 @@ def get_dashboard_stats() -> Dict[str, object]:
             "category_totals": category_totals,
             "top_category": top_category,
             "weekly_activity": weekly_activity,
+            "monthly_activity": monthly_activity,
         }
 
 

@@ -6,11 +6,13 @@ A focused, friendly dashboard for building a consistent Japanese study habit. Lo
 
 - Live date, time, and time-aware greeting
 - Light and dark themes saved in the browser
+- Moss, Sakura, and Ocean palettes
+- Optional cat-and-dog study buddies and kanji/hiragana background
 - Focus timer with 5, 25, and 50 minute presets
 - Study session logging by grammar, vocabulary, kanji, or dokkai
 - Daily plan checklist with completion percentage
 - Study minutes, session count, score, and streak tracking
-- Seven-day activity chart and daily category insight
+- Seven-day and 30-day activity charts with daily category insight
 - SQLite persistence with a small JSON dashboard API
 - Responsive layout with reduced-motion support
 
