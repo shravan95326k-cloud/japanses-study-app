@@ -47,8 +47,23 @@ body[data-color-theme="ocean"] {
   --focus-accent: #f5d76e;
 }
 
+body[data-color-theme="samurai"] {
+  --bg: #eee8dc;
+  --panel: #fffdf8;
+  --border: #cfc5b1;
+  --primary: #9d2d2f;
+  --primary-soft: #f3dfd5;
+  --text: #272321;
+  --muted: #71675e;
+  --coral: #bd6b32;
+  --focus-panel: #252525;
+  --focus-accent: #d7ad54;
+  --soft: #f5f0e7;
+}
+
 body.dark-mode[data-color-theme="sakura"] { --bg: #2b1c25; --panel: #38242f; --border: #5b3a49; --soft: #432b38; }
 body.dark-mode[data-color-theme="ocean"] { --bg: #172a34; --panel: #203b48; --border: #355969; --soft: #284956; }
+body.dark-mode[data-color-theme="samurai"] { --bg: #211f1e; --panel: #302d2a; --border: #574d43; --soft: #3a3530; --text: #f5eee2; --muted: #c0b3a4; --primary: #e26a4e; --primary-soft: #4c302c; }
 body.kana-theme {
   background-image: radial-gradient(circle at 90% 0%, rgba(215, 237, 114, 0.28), transparent 30%), linear-gradient(135deg, rgba(23, 107, 91, 0.035) 25%, transparent 25%) 0 0 / 28px 28px, repeating-linear-gradient(115deg, transparent 0 68px, rgba(23, 107, 91, 0.055) 68px 70px), var(--bg);
 }
@@ -69,6 +84,46 @@ body.kana-theme::before {
   transform: rotate(-12deg) scale(1.2);
 }
 
+body[data-color-theme="samurai"] {
+  background-image:
+    linear-gradient(90deg, transparent 0 18%, rgba(157, 45, 47, 0.08) 18% 18.3%, transparent 18.3% 81.7%, rgba(157, 45, 47, 0.08) 81.7% 82%, transparent 82%),
+    linear-gradient(180deg, rgba(39, 35, 33, 0.06) 0 2px, transparent 2px 54px),
+    repeating-linear-gradient(90deg, rgba(39, 35, 33, 0.035) 0 1px, transparent 1px 5px),
+    var(--bg);
+}
+
+body[data-color-theme="samurai"]::before {
+  content: "武 士 道 侍 刀 禅 神 社";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: var(--primary);
+  opacity: 0.075;
+  font-family: Georgia, serif;
+  font-size: clamp(2.5rem, 8vw, 7rem);
+  letter-spacing: 0.8rem;
+  pointer-events: none;
+  transform: rotate(-10deg) scale(1.15);
+}
+
+body[data-color-theme="samurai"]::after {
+  content: "⛩  ━━━━━━━━━━━━━  刀";
+  position: fixed;
+  right: 3vw;
+  bottom: 5vh;
+  z-index: -1;
+  color: var(--primary);
+  opacity: 0.1;
+  font-family: Georgia, serif;
+  font-size: clamp(1.8rem, 4vw, 4rem);
+  letter-spacing: 0.15rem;
+  pointer-events: none;
+  transform: rotate(-8deg);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -79,6 +134,10 @@ body {
   background: radial-gradient(circle at 90% 0%, rgba(215, 237, 114, 0.28), transparent 30%), linear-gradient(135deg, rgba(230, 109, 91, 0.05) 25%, transparent 25%) 0 0 / 28px 28px, var(--bg);
   color: var(--text);
   transition: background 0.35s ease, color 0.35s ease;
+}
+
+body[data-color-theme="samurai"] {
+  background: linear-gradient(90deg, transparent 0 18%, rgba(157, 45, 47, 0.08) 18% 18.3%, transparent 18.3% 81.7%, rgba(157, 45, 47, 0.08) 81.7% 82%, transparent 82%), linear-gradient(180deg, rgba(39, 35, 33, 0.06) 0 2px, transparent 2px 54px), repeating-linear-gradient(90deg, rgba(39, 35, 33, 0.035) 0 1px, transparent 1px 5px), var(--bg);
 }
 
 .container {
@@ -143,6 +202,7 @@ h1 {
 .theme-swatch.moss { background: linear-gradient(135deg, #176b5b 50%, #d7ed72 50%); }
 .theme-swatch.sakura { background: linear-gradient(135deg, #a43d61 50%, #ffd0a8 50%); }
 .theme-swatch.ocean { background: linear-gradient(135deg, #17658a 50%, #f5d76e 50%); }
+.theme-swatch.samurai { background: linear-gradient(135deg, #252525 48%, #9d2d2f 48% 63%, #d7ad54 63%); }
 .theme-feature { width: auto; min-width: 44px; padding: 5px 8px; border: 1px solid var(--border); background: var(--panel); color: var(--text); font-size: 0.9rem; }
 .theme-feature.active { background: var(--primary-soft); border-color: var(--primary); }
 .pet-banner { display: none; align-items: center; justify-content: center; gap: 12px; min-height: 0; margin: -4px 0 20px; padding: 0; border-radius: 14px; background: linear-gradient(90deg, transparent, var(--primary-soft), transparent); color: var(--primary); opacity: 0; }
@@ -472,6 +532,51 @@ button.danger {
 
 .recent-section {
   margin-top: 20px;
+}
+
+/* Organize the dashboard as a focused workspace on larger screens. */
+@media (min-width: 881px) {
+  .container {
+    display: grid;
+    grid-template-columns: minmax(0, 1.28fr) minmax(300px, 0.72fr);
+    grid-template-areas:
+      "header header"
+      "themes themes"
+      "pets pets"
+      "focus focus"
+      "dashboard dashboard"
+      "chart chart"
+      "forms stats"
+      "recent recent";
+    align-items: start;
+    column-gap: 20px;
+    row-gap: 18px;
+  }
+
+  .header { grid-area: header; margin-bottom: 0; }
+  .theme-picker { grid-area: themes; margin: -6px 0 0; }
+  .pet-banner { grid-area: pets; margin: -4px 0 0; }
+  .focus-bar { grid-area: focus; margin-bottom: 0; }
+  .dashboard { grid-area: dashboard; margin-bottom: 0; }
+  .chart-grid { grid-area: chart; margin-bottom: 0; }
+  .stats-grid {
+    grid-area: stats;
+    grid-template-columns: 1fr;
+    margin-bottom: 0;
+  }
+  .form-grid {
+    grid-area: forms;
+    grid-template-columns: 1fr;
+    margin-bottom: 0;
+  }
+  .recent-section { grid-area: recent; margin-top: 0; }
+}
+
+@media (min-width: 681px) and (max-width: 880px) {
+  .form-grid,
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @keyframes rise-in {

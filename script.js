@@ -24,14 +24,11 @@ const timerStart = document.getElementById('timerStart');
 const timerReset = document.getElementById('timerReset');
 const presets = document.querySelectorAll('.preset');
 const themeSwatches = document.querySelectorAll('.theme-swatch');
-<<<<<<< Updated upstream
 const petThemeToggle = document.getElementById('petThemeToggle');
 const kanaThemeToggle = document.getElementById('kanaThemeToggle');
 const petBanner = document.getElementById('petBanner');
-=======
 const chartRanges = document.querySelectorAll('.chart-range');
 const activityHeading = document.getElementById('activityHeading');
->>>>>>> Stashed changes
 let streak = Number(document.body.dataset.streak || 0);
 let activeRange = 'week';
 let activityData = { weekly_activity: [], monthly_activity: [] };
