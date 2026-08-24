@@ -29,7 +29,6 @@ const kanaThemeToggle = document.getElementById('kanaThemeToggle');
 const petBanner = document.getElementById('petBanner');
 const chartRanges = document.querySelectorAll('.chart-range');
 const activityHeading = document.getElementById('activityHeading');
->>>>>>>  Stashed changes
 let streak = Number(document.body.dataset.streak || 0);
 let activeRange = 'week';
 let activityData = { weekly_activity: [], monthly_activity: [] };

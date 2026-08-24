@@ -1,0 +1,17 @@
+# Local environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Local development files
+.git/
+.gitignore
+.vscode/
+
+# Local SQLite data is not durable on App Engine
+study_tracker.db
+
+# OS and editor files
+.DS_Store
+Thumbs.db
