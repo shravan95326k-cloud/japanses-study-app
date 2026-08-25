@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>History | Japan Study Companion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <main class="container history-page">
+      <header class="history-header">
+        <div>
+          <p class="eyebrow">Your learning archive</p>
+          <h1>Study history</h1>
+          <p class="greeting">A dated record of sessions and tasks completed.</p>
+        </div>
+        <a class="button-link" href="{{ url_for('home') }}">Back to dashboard</a>
+      </header>
+
+      <section class="history-grid">
+        <div class="card">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Focus log</p>
+              <h2>Study sessions</h2>
+            </div>
+            <span class="history-count">{{ sessions|length }}</span>
+          </div>
+          {% if sessions %}
+            <div class="history-list">
+              {% for session in sessions %}
+                <article class="history-item">
+                  <div>
+                    <strong>{{ session.title }}</strong>
+                    <p>{{ session.date.strftime('%A, %b %d, %Y') }} · {{ session.category|title }} · {{ session.minutes }} minutes</p>
+                  </div>
+                  <span class="score-badge">{{ session.score }}/100</span>
+                </article>
+              {% endfor %}
+            </div>
+          {% else %}
+            <p class="empty-state">No study sessions recorded yet.</p>
+          {% endif %}
+        </div>
+
+        <div class="card">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Task log</p>
+              <h2>To-do history</h2>
+            </div>
+            <span class="history-count">{{ todos|length }}</span>
+          </div>
+          {% if todos %}
+            <div class="history-list">
+              {% for todo in todos %}
+                <article class="history-item">
+                  <div>
+                    <strong class="{% if todo.is_done %}completed-text{% endif %}">{{ todo.title }}</strong>
+                    <p>{{ todo.created_at.strftime('%A, %b %d, %Y at %H:%M') }}</p>
+                  </div>
+                  <span class="status-badge {% if todo.is_done %}done{% endif %}">{{ 'Done' if todo.is_done else 'Open' }}</span>
+                </article>
+              {% endfor %}
+            </div>
+          {% else %}
+            <p class="empty-state">No to-do tasks recorded yet.</p>
+          {% endif %}
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
