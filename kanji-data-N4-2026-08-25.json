@@ -1,0 +1,1911 @@
+[
+  {
+    "character": "字",
+    "meaning": "character, letter, word",
+    "sublevel": "part1",
+    "radicals": [
+      {
+        "character": "宀",
+        "meaning": "roof"
+      },
+      {
+        "character": "子",
+        "meaning": "child"
+      }
+    ],
+    "mnemonic": "A child under a roof learning to write characters.",
+    "onYomi": [
+      "ジ (ji)"
+    ],
+    "kunYomi": [
+      "あざ (aza)"
+    ],
+    "vocabulary": [
+      {
+        "word": "漢字",
+        "reading": "かんじ",
+        "meaning": "kanji, Chinese character",
+        "example": "漢字を書くのが難しいです。",
+        "translation": "Writing kanji is difficult."
+      },
+      {
+        "word": "文字",
+        "reading": "もじ",
+        "meaning": "letter, character",
+        "example": "この文字は何と読みますか？",
+        "translation": "How do you read this character?"
+      }
+    ],
+    "jlptLevel": "N4"
+  },
+  {
+    "character": "会",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "社",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "業",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "員",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "力",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "動",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "言",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "主",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "作",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "公",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "思",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "正",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "界",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "重",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "海",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "集",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "品",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "私",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "終",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "真",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "町",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "空",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "切",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "究",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "店",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "試",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "映",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "医",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "写",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "注",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "買",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "室",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "黒",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "青",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "走",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "駅",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "夕",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "肉",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "飯",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "茶",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "兄",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part1",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "漢",
+    "meaning": "Chinese character, China",
+    "sublevel": "part1",
+    "radicals": [
+      {
+        "character": "氵",
+        "meaning": "water"
+      },
+      {
+        "character": "廴",
+        "meaning": "stretching"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      }
+    ],
+    "mnemonic": "Water flowing far reaching the mouth represents the spread of Chinese culture.",
+    "onYomi": [
+      "カン (kan)"
+    ],
+    "kunYomi": [],
+    "vocabulary": [
+      {
+        "word": "漢字",
+        "reading": "かんじ",
+        "meaning": "kanji, Chinese character",
+        "example": "この漢字の読み方を覚えています。",
+        "translation": "I remember how to read this kanji."
+      },
+      {
+        "word": "漢文",
+        "reading": "かんぶん",
+        "meaning": "Chinese classics",
+        "example": "大学で漢文を勉強しています。",
+        "translation": "I'm studying Chinese classics at university."
+      }
+    ],
+    "jlptLevel": "N4"
+  },
+  {
+    "character": "同",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "発",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "方",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "立",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "問",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "京",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "理",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "題",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "用",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "持",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "家",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "安",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "教",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "近",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "売",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "別",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "計",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "始",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "台",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "有",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "料",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "急",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "転",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "楽",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "病",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "族",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "親",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "仕",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "答",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "帰",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "悪",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "歩",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "花",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "館",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "秋",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "洋",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "借",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "貸",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "勉",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "弟",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "犬",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part2",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "事",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "者",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "新",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "開",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "代",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "目",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "体",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "意",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "度",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "野",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "世",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "院",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "文",
+    "meaning": "sentence, literature, style, art",
+    "sublevel": "part3",
+    "radicals": [
+      {
+        "character": "文",
+        "meaning": "sentence"
+      }
+    ],
+    "mnemonic": "The character looks like a person with open arms expressing ideas.",
+    "onYomi": [
+      "ブン (bun)",
+      "モン (mon)"
+    ],
+    "kunYomi": [
+      "ふみ (fumi)"
+    ],
+    "vocabulary": [
+      {
+        "word": "文化",
+        "reading": "ぶんか",
+        "meaning": "culture",
+        "example": "日本の文化に興味があります。",
+        "translation": "I am interested in Japanese culture."
+      },
+      {
+        "word": "文字",
+        "reading": "もじ",
+        "meaning": "letter, character",
+        "example": "この文字はなんと読みますか？",
+        "translation": "How do you read this character?"
+      }
+    ],
+    "jlptLevel": "N4"
+  },
+  {
+    "character": "考",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "知",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "物",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "死",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "朝",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "広",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "口",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "工",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "止",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "研",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "起",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "質",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "銀",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "験",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "去",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "夜",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "古",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "図",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "風",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "春",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "屋",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "夏",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "旅",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "曜",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "堂",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "冬",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "牛",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "妹",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part3",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "自",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "地",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "場",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "手",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "明",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "通",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "田",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "不",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "強",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "以",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "多",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "心",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "元",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "画",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "道",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "使",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "特",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "運",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "住",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "少",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "建",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "送",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "足",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "着",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "待",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "早",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "英",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "味",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "音",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "歌",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "週",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "紙",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "赤",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "色",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "習",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "服",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "飲",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "鳥",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "昼",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "魚",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  },
+  {
+    "character": "姉",
+    "meaning": "Loading...",
+    "jlptLevel": "N4",
+    "sublevel": "part4",
+    "radicals": [],
+    "mnemonic": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "vocabulary": []
+  }
+]

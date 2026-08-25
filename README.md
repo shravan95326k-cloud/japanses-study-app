@@ -13,6 +13,8 @@ A focused, friendly dashboard for building a consistent Japanese study habit. Lo
 - Study session logging by grammar, vocabulary, kanji, or dokkai
 - JLPT N5 vocabulary deck with flashcards, search, type filters, and known-word progress
 - CSV/JSON vocabulary importer with duplicate-safe updates
+- Separate Grammar and Kanji decks for JLPT N5, N4, and N3
+- Shared flashcards, keyboard navigation, search, progress, and color themes across decks
 - Daily plan checklist with completion percentage
 - Study minutes, session count, score, and streak tracking
 - Seven-day and 30-day activity charts with daily category insight
@@ -69,13 +71,13 @@ The SQLite database is created automatically on first run. Use the **Reset data*
 
 ### Import JLPT vocabulary
 
-Place a `jlpt_n5-vocab.csv` or `jlpt_n5-vocab.json` file in the project folder and run:
+Place vocabulary, grammar, or kanji source files in the project folder and run:
 
 ```powershell
 python import_vocab.py
 ```
 
-You can also pass a file path directly: `python import_vocab.py path\to\vocabulary.csv`. The importer accepts `japanese`/`word`, `reading`/`kana`, `meaning`/`english`, `part_of_speech`/`pos`, and `example`/`sentence` fields. Open **Vocabulary** from the dashboard after importing.
+With no argument, the importer loads `hanabira_jlpt_n5_grammar.csv`, `hanabira_jlpt_n4_grammar.csv`, `hanabira_jlpt_n3_grammar.csv`, `kanji-data-N5.json`, `kanji-data-N4.json`, `kanji-data-N3.json`, and the N5 vocabulary file when present. You can also pass a vocabulary or grammar file directly: `python import_vocab.py path\to\file.csv`. Open **Study decks** from the dashboard to choose a category and JLPT level.
 
 ## Deploy to Google Cloud
 
@@ -116,6 +118,8 @@ The included `gunicorn` dependency is used by App Engine to serve Flask in produ
 ├── vocabulary.html      # JLPT N5 flashcard and browse experience
 ├── import_vocab.py      # CSV/JSON vocabulary importer
 ├── jlpt_n5-vocab.json   # Included starter N5 deck
+├── hanabira_jlpt_n*_grammar.csv # Imported grammar decks
+└── kanji-data-N*.json     # Imported kanji decks
 ├── requirements.txt    # Python dependencies
 └── study_tracker.db    # Local SQLite data file created by the app
 ```

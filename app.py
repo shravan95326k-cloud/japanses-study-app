@@ -59,6 +59,26 @@ class Vocabulary(db.Model):
     part_of_speech = db.Column(db.String(80), nullable=False, default='')
     example = db.Column(db.String(300), nullable=False, default='')
 
+class Grammar(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    level = db.Column(db.String(2), nullable=False)
+    point = db.Column(db.String(300), nullable=False)
+    meaning = db.Column(db.Text, nullable=False)
+    formation = db.Column(db.Text, nullable=False, default='')
+    example_japanese = db.Column(db.Text, nullable=False, default='')
+    example_english = db.Column(db.Text, nullable=False, default='')
+    __table_args__ = (db.UniqueConstraint('level', 'point', name='unique_grammar_level_point'),)
+
+class Kanji(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    level = db.Column(db.String(2), nullable=False)
+    character = db.Column(db.String(10), nullable=False)
+    meaning = db.Column(db.Text, nullable=False)
+    readings = db.Column(db.Text, nullable=False, default='')
+    mnemonic = db.Column(db.Text, nullable=False, default='')
+    vocabulary = db.Column(db.Text, nullable=False, default='')
+    __table_args__ = (db.UniqueConstraint('level', 'character', name='unique_kanji_level_character'),)
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -140,11 +160,34 @@ def history():
 @app.route('/vocabulary')
 @login_required
 def vocabulary():
-    words = Vocabulary.query.order_by(Vocabulary.id).all()
-    word_data = [{'japanese': word.japanese, 'reading': word.reading,
-                  'meaning': word.meaning, 'part_of_speech': word.part_of_speech,
-                  'example': word.example} for word in words]
-    return render_template('vocabulary.html', words=words, word_data=word_data)
+    return redirect(url_for('study_deck', category='vocabulary', level='N5'))
+
+@app.route('/study/<category>/<level>')
+@login_required
+def study_deck(category, level):
+    category = category.lower()
+    level = level.upper()
+    if category not in {'vocabulary', 'grammar', 'kanji'} or level not in {'N5', 'N4', 'N3'}:
+        abort(404)
+    if category == 'vocabulary':
+        items = Vocabulary.query.order_by(Vocabulary.id).all() if level == 'N5' else []
+        data = [{'front': item.japanese, 'reading': item.reading, 'meaning': item.meaning,
+                 'detail': item.example, 'type': item.part_of_speech} for item in items]
+    elif category == 'grammar':
+        items = Grammar.query.filter_by(level=level).order_by(Grammar.id).all()
+        data = [{'front': item.point, 'reading': item.formation, 'meaning': item.meaning,
+                 'detail': item.example_japanese, 'extra': item.example_english, 'type': 'grammar'} for item in items]
+    else:
+        items = Kanji.query.filter_by(level=level).order_by(Kanji.id).all()
+        data = [{'front': item.character, 'reading': item.readings, 'meaning': item.meaning,
+                 'detail': item.mnemonic, 'extra': item.vocabulary, 'type': 'kanji'} for item in items]
+    if category == 'vocabulary':
+        counts = {'N5': Vocabulary.query.count(), 'N4': 0, 'N3': 0}
+    elif category == 'grammar':
+        counts = {deck_level: Grammar.query.filter_by(level=deck_level).count() for deck_level in ('N5', 'N4', 'N3')}
+    else:
+        counts = {deck_level: Kanji.query.filter_by(level=deck_level).count() for deck_level in ('N5', 'N4', 'N3')}
+    return render_template('study.html', category=category, level=level, items=data, counts=counts)
 
 def build_dashboard():
     today = datetime.utcnow().date()

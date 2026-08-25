@@ -7,10 +7,11 @@ jlpt_n5-vocab.csv/json in this folder.
 
 import csv
 import json
+import re
 import sys
 from pathlib import Path
 
-from app import Vocabulary, app, db
+from app import Grammar, Kanji, Vocabulary, app, db
 
 
 def rows_from_file(path):
@@ -50,14 +51,65 @@ def import_file(path):
 	return imported, skipped
 
 
+def import_grammar(path):
+	imported = 0
+	with path.open(newline='', encoding='utf-8-sig') as source:
+		for row in csv.DictReader(source):
+			point = value(row, 'Grammar Point')
+			if not point:
+				continue
+			level = value(row, 'JLPT Level').upper().replace('JLPT ', '')
+			grammar = Grammar.query.filter_by(level=level, point=point).first()
+			if grammar is None:
+				grammar = Grammar(level=level, point=point)
+				db.session.add(grammar)
+			grammar.meaning = value(row, 'Meaning')
+			grammar.formation = value(row, 'Formation')
+			grammar.example_japanese = value(row, 'Example (Japanese)')
+			grammar.example_english = value(row, 'Example (English)')
+			imported += 1
+	db.session.commit()
+	return imported
+
+
+def import_kanji(path, level):
+	imported = 0
+	for row in json.loads(path.read_text(encoding='utf-8')):
+		character = value(row, 'character')
+		if not character:
+			continue
+		kanji = Kanji.query.filter_by(level=level, character=character).first()
+		if kanji is None:
+			kanji = Kanji(level=level, character=character)
+			db.session.add(kanji)
+		kanji.meaning = value(row, 'meaning')
+		kanji.readings = ', '.join(row.get('onYomi', []) + row.get('kunYomi', []))
+		kanji.mnemonic = value(row, 'mnemonic')
+		kanji.vocabulary = '; '.join(item.get('word', '') + ' (' + item.get('reading', '') + ')' for item in row.get('vocabulary', []))
+		imported += 1
+	db.session.commit()
+	return imported
+
+
 if __name__ == '__main__':
-	candidates = [Path(sys.argv[1])] if len(sys.argv) > 1 else [
-		Path('jlpt_n5-vocab.csv'), Path('jlpt_n5-vocab.json'),
-	]
-	source = next((path for path in candidates if path.exists()), None)
-	if source is None:
-		raise SystemExit('Place jlpt_n5-vocab.csv or .json in this folder, or pass its path.')
 	with app.app_context():
 		db.create_all()
-		imported, skipped = import_file(source)
-	print(f'Imported {imported} words from {source.name}; skipped {skipped} incomplete rows.')
+		if len(sys.argv) > 1:
+			source = Path(sys.argv[1])
+			if 'grammar' in source.name.lower():
+				print(f'Imported {import_grammar(source)} grammar cards.')
+			else:
+				imported, skipped = import_file(source)
+				print(f'Imported {imported} vocabulary words; skipped {skipped} incomplete rows.')
+		else:
+			for source in sorted(Path('.').glob('hanabira_jlpt_n*_grammar.csv')):
+				print(f'Imported {import_grammar(source)} grammar cards from {source.name}.')
+			for source in sorted(Path('.').glob('kanji-data-N*.json')):
+				match = re.search(r'(N[345])', source.name.upper())
+				if match:
+					print(f'Imported {import_kanji(source, match.group(1))} kanji cards from {source.name}.')
+			for source in [Path('jlpt_n5-vocab.csv'), Path('jlpt_n5-vocab.json')]:
+				if source.exists():
+					imported, skipped = import_file(source)
+					print(f'Imported {imported} vocabulary words; skipped {skipped} incomplete rows.')
+					break

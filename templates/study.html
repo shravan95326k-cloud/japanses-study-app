@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ category|title }} {{ level }} | Japan Study Companion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <main class="container study-page">
+      <header class="study-header">
+        <div>
+          <p class="eyebrow">Japanese study decks</p>
+          <h1>{{ category|title }} <span class="level-mark">{{ level }}</span></h1>
+          <p class="greeting">Flip, review, and build confidence at your pace.</p>
+        </div>
+        <div class="study-header-actions">
+          <a class="button-link" href="{{ url_for('home') }}">Dashboard</a>
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" title="Switch theme"><span id="themeIcon">&#9790;</span></button>
+        </div>
+      </header>
+      <div class="theme-picker study-theme-picker" aria-label="Color theme">
+        <span>Color</span>
+        <button class="theme-swatch moss" type="button" data-theme="moss" aria-label="Moss theme"></button>
+        <button class="theme-swatch sakura" type="button" data-theme="sakura" aria-label="Sakura theme"></button>
+        <button class="theme-swatch ocean" type="button" data-theme="ocean" aria-label="Ocean theme"></button>
+        <button class="theme-swatch samurai" type="button" data-theme="samurai" aria-label="Samurai theme"></button>
+      </div>
+
+      <section class="deck-nav card" aria-label="Study deck selection">
+        <div class="deck-nav-group">
+          <strong>Vocabulary</strong>
+          {% for deck_level in ['N5', 'N4', 'N3'] %}
+            <a class="deck-button{% if category == 'vocabulary' and level == deck_level %} active{% endif %}{% if not counts.get(deck_level) %} unavailable{% endif %}" href="{{ url_for('study_deck', category='vocabulary', level=deck_level) }}">{{ deck_level }} <small>{{ counts.get(deck_level, 0) }}</small></a>
+          {% endfor %}
+        </div>
+        <div class="deck-nav-group">
+          <strong>Grammar</strong>
+          {% for deck_level in ['N5', 'N4', 'N3'] %}
+            <a class="deck-button{% if category == 'grammar' and level == deck_level %} active{% endif %}" href="{{ url_for('study_deck', category='grammar', level=deck_level) }}">{{ deck_level }} <small>{{ counts.get(deck_level, 0) }}</small></a>
+          {% endfor %}
+        </div>
+        <div class="deck-nav-group">
+          <strong>Kanji</strong>
+          {% for deck_level in ['N5', 'N4', 'N3'] %}
+            <a class="deck-button{% if category == 'kanji' and level == deck_level %} active{% endif %}" href="{{ url_for('study_deck', category='kanji', level=deck_level) }}">{{ deck_level }} <small>{{ counts.get(deck_level, 0) }}</small></a>
+          {% endfor %}
+        </div>
+      </section>
+
+      {% if items %}
+        <section class="study-toolbar card">
+          <div><p class="eyebrow">{{ category|title }} {{ level }}</p><h2><span id="deckCount">{{ items|length }}</span> cards</h2></div>
+          <div class="vocab-controls"><label class="sr-only" for="studySearch">Search deck</label><input id="studySearch" type="search" placeholder="Search this deck" /><span class="progress-label" id="knownLabel">0 known</span></div>
+        </section>
+        <section class="study-grid">
+          <div class="card flashcard-panel">
+            <div class="panel-heading"><div><p class="eyebrow">Flashcard</p><h2 id="cardPosition">Card 1 of {{ items|length }}</h2></div><span class="progress-label" id="cardType">{{ category|title }}</span></div>
+            <button class="flashcard" id="flashcard" type="button" aria-label="Show answer">
+              <span class="flashcard-face flashcard-front"><span class="word-japanese" id="cardFront"></span><span class="word-reading" id="cardReading"></span><span class="flip-hint">Show answer</span></span>
+              <span class="flashcard-face flashcard-back" aria-hidden="true"><span class="word-meaning" id="cardMeaning"></span><span class="word-example" id="cardDetail"></span><span class="word-example" id="cardExtra"></span><span class="flip-hint">Show prompt</span></span>
+            </button>
+            <div class="flashcard-actions"><button class="learn-button" id="learningButton" type="button">Review again</button><button class="know-button" id="knownButton" type="button">I know it</button></div>
+            <p class="deck-status" id="deckStatus" role="status">Tap the card or press Space to flip it.</p>
+          </div>
+          <div class="card word-list-panel"><div class="panel-heading"><div><p class="eyebrow">Browse</p><h2>Card list</h2></div><span class="history-count" id="visibleCount">{{ items|length }}</span></div><div class="word-list" id="wordList">{% for item in items %}<button class="word-row" type="button" data-index="{{ loop.index0 }}" data-search="{{ (item.front ~ ' ' ~ item.reading ~ ' ' ~ item.meaning)|lower }}"><span><strong>{{ item.front }}</strong><small>{{ item.reading }}</small></span><span class="word-row-meaning">{{ item.meaning }}</span></button>{% endfor %}</div></div>
+        </section>
+      {% else %}
+        <section class="card empty-vocab"><p class="eyebrow">Deck unavailable</p><h2>No {{ category }} {{ level }} data has been imported yet.</h2><p>Choose another level, or add the matching source file and run the importer.</p></section>
+      {% endif %}
+    </main>
+    <script>
+      const deck = {{ items|tojson }};
+      const themeToggle = document.getElementById('themeToggle');
+      const themeIcon = document.getElementById('themeIcon');
+      function applyDarkMode(enabled) { document.body.classList.toggle('dark-mode', enabled); localStorage.setItem('japanese-study-theme', enabled ? 'dark' : 'light'); themeIcon.textContent = enabled ? '\\u2600' : '\\u263e'; }
+      themeToggle.addEventListener('click', () => applyDarkMode(!document.body.classList.contains('dark-mode'))); applyDarkMode(localStorage.getItem('japanese-study-theme') === 'dark');
+      const themeSwatches = document.querySelectorAll('.study-theme-picker .theme-swatch');
+      function applyColorTheme(theme) { document.body.dataset.colorTheme = theme; localStorage.setItem('japanese-study-color-theme', theme); themeSwatches.forEach(swatch => swatch.classList.toggle('active', swatch.dataset.theme === theme)); }
+      themeSwatches.forEach(swatch => swatch.addEventListener('click', () => applyColorTheme(swatch.dataset.theme))); applyColorTheme(localStorage.getItem('japanese-study-color-theme') || 'moss');
+      const card = document.getElementById('flashcard');
+      if (card) {
+        let current = 0; let flipped = false; const storageKey = `study-known-{{ category }}-{{ level }}`; const known = new Set(JSON.parse(localStorage.getItem(storageKey) || '[]')); const front = document.getElementById('cardFront'); const reading = document.getElementById('cardReading'); const meaning = document.getElementById('cardMeaning'); const detail = document.getElementById('cardDetail'); const extra = document.getElementById('cardExtra'); const position = document.getElementById('cardPosition'); const status = document.getElementById('deckStatus'); const knownLabel = document.getElementById('knownLabel');
+        function render() { const item = deck[current]; front.textContent = item.front; reading.textContent = item.reading || ''; meaning.textContent = item.meaning; detail.textContent = item.detail || ''; extra.textContent = item.extra || ''; position.textContent = `Card ${current + 1} of ${deck.length}`; knownLabel.textContent = `${known.size} known`; card.classList.remove('flipped'); flipped = false; }
+        function move(index, message) { current = (index + deck.length) % deck.length; render(); if (message) status.textContent = message; }
+        function mark(value) { if (value) known.add(deck[current].front); else known.delete(deck[current].front); localStorage.setItem(storageKey, JSON.stringify([...known])); move(current + 1, value ? 'Marked known. Next card.' : 'Added back to your review.'); }
+        card.addEventListener('click', () => { flipped = !flipped; card.classList.toggle('flipped', flipped); status.textContent = flipped ? 'Choose your confidence level.' : 'Tap the card or press Space to flip it.'; }); document.getElementById('knownButton').addEventListener('click', () => mark(true)); document.getElementById('learningButton').addEventListener('click', () => mark(false)); const rows = [...document.querySelectorAll('.word-row')]; rows.forEach(row => row.addEventListener('click', () => move(Number(row.dataset.index)))); const search = document.getElementById('studySearch'); search.addEventListener('input', () => { const query = search.value.toLowerCase().trim(); let visible = 0; rows.forEach(row => { const match = row.dataset.search.includes(query); row.hidden = !match; if (match) visible++; }); document.getElementById('visibleCount').textContent = visible; }); document.addEventListener('keydown', event => { if (event.target.matches('input')) return; if (event.key === ' ') { event.preventDefault(); card.click(); } if (event.key === 'ArrowRight') move(current + 1); if (event.key === 'ArrowLeft') move(current - 1); }); render();
+      }
+    </script>
+  </body>
+</html>
