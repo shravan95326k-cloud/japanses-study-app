@@ -58,6 +58,7 @@ class Vocabulary(db.Model):
     meaning = db.Column(db.String(300), nullable=False)
     part_of_speech = db.Column(db.String(80), nullable=False, default='')
     example = db.Column(db.String(300), nullable=False, default='')
+    level = db.Column(db.String(2), nullable=False, default='N5')
 
 class Grammar(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -170,7 +171,7 @@ def study_deck(category, level):
     if category not in {'vocabulary', 'grammar', 'kanji'} or level not in {'N5', 'N4', 'N3'}:
         abort(404)
     if category == 'vocabulary':
-        items = Vocabulary.query.order_by(Vocabulary.id).all() if level == 'N5' else []
+        items = Vocabulary.query.filter_by(level=level).order_by(Vocabulary.id).all()
         data = [{'front': item.japanese, 'reading': item.reading, 'meaning': item.meaning,
                  'detail': item.example, 'type': item.part_of_speech} for item in items]
     elif category == 'grammar':
@@ -181,13 +182,30 @@ def study_deck(category, level):
         items = Kanji.query.filter_by(level=level).order_by(Kanji.id).all()
         data = [{'front': item.character, 'reading': item.readings, 'meaning': item.meaning,
                  'detail': item.mnemonic, 'extra': item.vocabulary, 'type': 'kanji'} for item in items]
-    if category == 'vocabulary':
-        counts = {'N5': Vocabulary.query.count(), 'N4': 0, 'N3': 0}
-    elif category == 'grammar':
-        counts = {deck_level: Grammar.query.filter_by(level=deck_level).count() for deck_level in ('N5', 'N4', 'N3')}
-    else:
-        counts = {deck_level: Kanji.query.filter_by(level=deck_level).count() for deck_level in ('N5', 'N4', 'N3')}
+    counts = {
+        'vocabulary': {deck_level: Vocabulary.query.filter_by(level=deck_level).count() for deck_level in ('N5', 'N4', 'N3')},
+        'grammar': {deck_level: Grammar.query.filter_by(level=deck_level).count() for deck_level in ('N5', 'N4', 'N3')},
+        'kanji': {deck_level: Kanji.query.filter_by(level=deck_level).count() for deck_level in ('N5', 'N4', 'N3')},
+    }
     return render_template('study.html', category=category, level=level, items=data, counts=counts)
+
+@app.route('/test/<category>/<level>')
+@login_required
+def test_deck(category, level):
+    category = category.lower()
+    level = level.upper()
+    if category not in {'vocabulary', 'grammar', 'kanji'} or level not in {'N5', 'N4', 'N3'}:
+        abort(404)
+    if category == 'vocabulary':
+        records = Vocabulary.query.filter_by(level=level).all()
+        questions = [{'prompt': item.japanese, 'answer': item.meaning} for item in records]
+    elif category == 'grammar':
+        records = Grammar.query.filter_by(level=level).all()
+        questions = [{'prompt': item.point, 'answer': item.meaning} for item in records]
+    else:
+        records = Kanji.query.filter_by(level=level).all()
+        questions = [{'prompt': item.character, 'answer': item.meaning} for item in records]
+    return render_template('test.html', category=category, level=level, questions=questions)
 
 def build_dashboard():
     today = datetime.utcnow().date()
@@ -281,6 +299,9 @@ def reset_data():
 
 with app.app_context():
     db.create_all()
+    vocabulary_columns = {column['name'] for column in inspect(db.engine).get_columns('vocabulary')}
+    if 'level' not in vocabulary_columns:
+        db.session.execute(text("ALTER TABLE vocabulary ADD COLUMN level VARCHAR(2) NOT NULL DEFAULT 'N5'"))
     session_columns = {column['name'] for column in inspect(db.engine).get_columns('study_session')}
     migrations = {
         'title': "ALTER TABLE study_session ADD COLUMN title VARCHAR(150) NOT NULL DEFAULT 'Study session'",

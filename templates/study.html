@@ -15,6 +15,7 @@
           <p class="greeting">Flip, review, and build confidence at your pace.</p>
         </div>
         <div class="study-header-actions">
+          <a class="button-link test-header-link" href="{{ url_for('test_deck', category=category, level=level) }}">Take test</a>
           <a class="button-link" href="{{ url_for('home') }}">Dashboard</a>
           <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" title="Switch theme"><span id="themeIcon">&#9790;</span></button>
         </div>
@@ -31,19 +32,19 @@
         <div class="deck-nav-group">
           <strong>Vocabulary</strong>
           {% for deck_level in ['N5', 'N4', 'N3'] %}
-            <a class="deck-button{% if category == 'vocabulary' and level == deck_level %} active{% endif %}{% if not counts.get(deck_level) %} unavailable{% endif %}" href="{{ url_for('study_deck', category='vocabulary', level=deck_level) }}">{{ deck_level }} <small>{{ counts.get(deck_level, 0) }}</small></a>
+            <a class="deck-button{% if category == 'vocabulary' and level == deck_level %} active{% endif %}{% if not counts['vocabulary'].get(deck_level) %} unavailable{% endif %}" href="{{ url_for('study_deck', category='vocabulary', level=deck_level) }}">{{ deck_level }} <small>{{ counts['vocabulary'].get(deck_level, 0) }}</small></a>
           {% endfor %}
         </div>
         <div class="deck-nav-group">
           <strong>Grammar</strong>
           {% for deck_level in ['N5', 'N4', 'N3'] %}
-            <a class="deck-button{% if category == 'grammar' and level == deck_level %} active{% endif %}" href="{{ url_for('study_deck', category='grammar', level=deck_level) }}">{{ deck_level }} <small>{{ counts.get(deck_level, 0) }}</small></a>
+            <a class="deck-button{% if category == 'grammar' and level == deck_level %} active{% endif %}" href="{{ url_for('study_deck', category='grammar', level=deck_level) }}">{{ deck_level }} <small>{{ counts['grammar'].get(deck_level, 0) }}</small></a>
           {% endfor %}
         </div>
         <div class="deck-nav-group">
           <strong>Kanji</strong>
           {% for deck_level in ['N5', 'N4', 'N3'] %}
-            <a class="deck-button{% if category == 'kanji' and level == deck_level %} active{% endif %}" href="{{ url_for('study_deck', category='kanji', level=deck_level) }}">{{ deck_level }} <small>{{ counts.get(deck_level, 0) }}</small></a>
+            <a class="deck-button{% if category == 'kanji' and level == deck_level %} active{% endif %}" href="{{ url_for('study_deck', category='kanji', level=deck_level) }}">{{ deck_level }} <small>{{ counts['kanji'].get(deck_level, 0) }}</small></a>
           {% endfor %}
         </div>
       </section>
@@ -55,7 +56,7 @@
         </section>
         <section class="study-grid">
           <div class="card flashcard-panel">
-            <div class="panel-heading"><div><p class="eyebrow">Flashcard</p><h2 id="cardPosition">Card 1 of {{ items|length }}</h2></div><span class="progress-label" id="cardType">{{ category|title }}</span></div>
+            <div class="panel-heading"><div><p class="eyebrow">Flashcard</p><h2 id="cardPosition">Card 1 of {{ items|length }}</h2></div><a class="text-link" href="{{ url_for('test_deck', category=category, level=level) }}">Take test</a></div>
             <button class="flashcard" id="flashcard" type="button" aria-label="Show answer">
               <span class="flashcard-face flashcard-front"><span class="word-japanese" id="cardFront"></span><span class="word-reading" id="cardReading"></span><span class="flip-hint">Show answer</span></span>
               <span class="flashcard-face flashcard-back" aria-hidden="true"><span class="word-meaning" id="cardMeaning"></span><span class="word-example" id="cardDetail"></span><span class="word-example" id="cardExtra"></span><span class="flip-hint">Show prompt</span></span>

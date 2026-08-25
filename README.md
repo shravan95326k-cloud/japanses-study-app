@@ -15,6 +15,7 @@ A focused, friendly dashboard for building a consistent Japanese study habit. Lo
 - CSV/JSON vocabulary importer with duplicate-safe updates
 - Separate Grammar and Kanji decks for JLPT N5, N4, and N3
 - Shared flashcards, keyboard navigation, search, progress, and color themes across decks
+- Multiple-choice tests with instant feedback and scoring
 - Daily plan checklist with completion percentage
 - Study minutes, session count, score, and streak tracking
 - Seven-day and 30-day activity charts with daily category insight
@@ -71,13 +72,13 @@ The SQLite database is created automatically on first run. Use the **Reset data*
 
 ### Import JLPT vocabulary
 
-Place vocabulary, grammar, or kanji source files in the project folder and run:
+Place vocabulary, grammar, or kanji source files in the `data/` folder and run:
 
 ```powershell
 python import_vocab.py
 ```
 
-With no argument, the importer loads `hanabira_jlpt_n5_grammar.csv`, `hanabira_jlpt_n4_grammar.csv`, `hanabira_jlpt_n3_grammar.csv`, `kanji-data-N5.json`, `kanji-data-N4.json`, `kanji-data-N3.json`, and the N5 vocabulary file when present. You can also pass a vocabulary or grammar file directly: `python import_vocab.py path\to\file.csv`. Open **Study decks** from the dashboard to choose a category and JLPT level.
+With no argument, the importer loads the `vocab-n*.csv`, `kanji-n*.csv`, and `hanabira_jlpt_n*_grammar.csv` files in `data/`, plus the existing N5 vocabulary file. You can also pass a vocabulary or grammar file directly: `python import_vocab.py path\to\file.csv`. Open **Study decks** from the dashboard to choose a category and JLPT level, then choose **Take test** from any deck.
 
 ## Deploy to Google Cloud
 
@@ -117,11 +118,11 @@ The included `gunicorn` dependency is used by App Engine to serve Flask in produ
 ├── style.css           # Responsive visual design and animations
 ├── vocabulary.html      # JLPT N5 flashcard and browse experience
 ├── import_vocab.py      # CSV/JSON vocabulary importer
-├── jlpt_n5-vocab.json   # Included starter N5 deck
-├── hanabira_jlpt_n*_grammar.csv # Imported grammar decks
-└── kanji-data-N*.json     # Imported kanji decks
-├── requirements.txt    # Python dependencies
-└── study_tracker.db    # Local SQLite data file created by the app
+├── data/                # All vocabulary, grammar, and kanji source files
+├── test.html              # Multiple-choice study test
+├── test_app.py           # Flask app data and route tests
+├── requirements.txt      # Python dependencies
+└── study_tracker.db      # Local SQLite data file created by the app
 ```
 
 ## API
