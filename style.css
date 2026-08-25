@@ -550,6 +550,57 @@ button.danger {
   50% { transform: translateY(-3px) rotate(3deg); }
 }
 
+.auth-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  position: relative;
+  background: radial-gradient(circle at 15% 15%, rgba(230, 109, 91, 0.16), transparent 28%), radial-gradient(circle at 85% 80%, rgba(23, 107, 91, 0.14), transparent 32%), var(--bg);
+}
+
+.auth-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  opacity: 0.32;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(32, 51, 47, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(32, 51, 47, 0.025) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.auth-shell { width: min(100% - 32px, 430px); position: relative; z-index: 1; }
+.auth-card { padding: 38px; border: 1px solid var(--border); border-radius: 22px; background: color-mix(in srgb, var(--panel) 94%, transparent); box-shadow: 0 24px 70px rgba(32, 51, 47, 0.14); animation: auth-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.auth-mark { width: 54px; height: 54px; display: grid; place-items: center; margin-bottom: 24px; border-radius: 50%; background: var(--coral); color: white; font-size: 1.3rem; font-weight: 700; box-shadow: 5px 5px 0 var(--primary-soft); transform: rotate(-8deg); }
+.auth-mark span { margin-left: -4px; margin-top: 10px; }
+.auth-card h1 { margin: 0 0 8px; font-size: clamp(2rem, 7vw, 2.8rem); }
+.auth-intro { margin-bottom: 28px; color: var(--muted); }
+.auth-form { display: grid; gap: 18px; }
+.auth-field { display: grid; gap: 7px; }
+.auth-field label { font-size: 0.88rem; }
+.auth-field input { margin: 0; border-color: var(--border); }
+.auth-form button { margin-top: 4px; padding: 13px 16px; background: var(--primary); }
+.auth-switch { margin: 24px 0 0; color: var(--muted); text-align: center; font-size: 0.9rem; }
+.auth-switch a { color: var(--primary); font-weight: 700; }
+.kana-drift { position: fixed; inset: 0; pointer-events: none; color: var(--primary); }
+.kana { position: absolute; opacity: 0.13; font-family: Georgia, serif; font-weight: 700; user-select: none; animation: kana-float 9s ease-in-out infinite; }
+.kanji-one { top: 13%; left: 12%; font-size: 5rem; animation-delay: -1s; }
+.kana-one { top: 26%; right: 14%; font-size: 3.2rem; animation-delay: -5s; }
+.kanji-two { bottom: 16%; left: 20%; font-size: 4rem; animation-delay: -7s; }
+.kana-two { top: 68%; right: 23%; font-size: 5rem; animation-delay: -3s; }
+.kanji-three { top: 10%; right: 31%; font-size: 2.7rem; animation-delay: -6s; }
+.kana-three { bottom: 10%; right: 8%; font-size: 3.5rem; animation-delay: -2s; }
+
+@keyframes auth-rise {
+  from { opacity: 0; transform: translateY(22px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes kana-float {
+  0%, 100% { transform: translateY(0) rotate(-8deg); }
+  50% { transform: translateY(-18px) rotate(8deg); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

@@ -1,13 +1,36 @@
 <!DOCTYPE html>
-<html><head><title>Login - Nihon</title>
-<style>body{font-family:sans-serif; display:flex; justify-content:center; align-items:center; height:100vh; background:#f0f0f0} .card{background:white; padding:30px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.1); width:300px} input{width:100%; padding:10px; margin:10px 0; border-radius:5px; border:1px solid #ccc} button{width:100%; padding:10px; background:#ff6b6b; color:white; border:none; border-radius:5px; cursor:pointer}</style>
-</head><body>
-<div class="card">
-<h2>Login</h2>
-<form method="POST">
-<input type="email" name="email" placeholder="Email" required>
-<input type="password" name="password" placeholder="Password" required>
-<button type="submit">Login</button>
-</form>
-<p>Account nahi hai? <a href="/register">Register</a></p>
-</div></body></html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | Nihon</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body class="auth-page">
+    <div class="kana-drift" aria-hidden="true">
+      <span class="kana kanji-one">学</span><span class="kana kana-one">あ</span>
+      <span class="kana kanji-two">日</span><span class="kana kana-two">ひ</span>
+      <span class="kana kanji-three">本</span><span class="kana kana-three">ね</span>
+    </div>
+    <main class="auth-shell">
+      <section class="auth-card">
+        <div class="auth-mark" aria-hidden="true">日<span>本</span></div>
+        <p class="eyebrow">Your study space</p>
+        <h1>Welcome back</h1>
+        <p class="auth-intro">Continue your Japanese learning rhythm.</p>
+        <form method="POST" class="auth-form">
+          <div class="auth-field">
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+          </div>
+          <div class="auth-field">
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" placeholder="Your password" autocomplete="current-password" required />
+          </div>
+          <button type="submit">Enter the dojo</button>
+        </form>
+        <p class="auth-switch">New to Nihon? <a href="{{ url_for('register') }}">Create an account</a></p>
+      </section>
+    </main>
+  </body>
+</html>
