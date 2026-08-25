@@ -11,6 +11,8 @@ A focused, friendly dashboard for building a consistent Japanese study habit. Lo
 - Optional cat-and-dog study buddies and kanji/hiragana background
 - Focus timer with 5, 25, and 50 minute presets
 - Study session logging by grammar, vocabulary, kanji, or dokkai
+- JLPT N5 vocabulary deck with flashcards, search, type filters, and known-word progress
+- CSV/JSON vocabulary importer with duplicate-safe updates
 - Daily plan checklist with completion percentage
 - Study minutes, session count, score, and streak tracking
 - Seven-day and 30-day activity charts with daily category insight
@@ -65,6 +67,16 @@ Open [http://localhost:5000](http://localhost:5000) in your browser.
 
 The SQLite database is created automatically on first run. Use the **Reset data** button to clear study sessions and plans.
 
+### Import JLPT vocabulary
+
+Place a `jlpt_n5-vocab.csv` or `jlpt_n5-vocab.json` file in the project folder and run:
+
+```powershell
+python import_vocab.py
+```
+
+You can also pass a file path directly: `python import_vocab.py path\to\vocabulary.csv`. The importer accepts `japanese`/`word`, `reading`/`kana`, `meaning`/`english`, `part_of_speech`/`pos`, and `example`/`sentence` fields. Open **Vocabulary** from the dashboard after importing.
+
 ## Deploy to Google Cloud
 
 This project includes an App Engine Standard deployment manifest in `app.yaml`.
@@ -101,6 +113,9 @@ The included `gunicorn` dependency is used by App Engine to serve Flask in produ
 ├── index.html          # Jinja template and page structure
 ├── script.js           # Timer, theme, clock, and live dashboard updates
 ├── style.css           # Responsive visual design and animations
+├── vocabulary.html      # JLPT N5 flashcard and browse experience
+├── import_vocab.py      # CSV/JSON vocabulary importer
+├── jlpt_n5-vocab.json   # Included starter N5 deck
 ├── requirements.txt    # Python dependencies
 └── study_tracker.db    # Local SQLite data file created by the app
 ```

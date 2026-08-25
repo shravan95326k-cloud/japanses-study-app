@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vocabulary | Japan Study Companion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <main class="container vocabulary-page">
+      <header class="history-header">
+        <div>
+          <p class="eyebrow">JLPT N5 deck</p>
+          <h1>Vocabulary practice</h1>
+          <p class="greeting">Build recognition one useful word at a time.</p>
+        </div>
+        <nav class="page-nav" aria-label="Study navigation">
+          <a class="button-link" href="{{ url_for('home') }}">Dashboard</a>
+          <a class="button-link" href="{{ url_for('history') }}">History</a>
+        </nav>
+      </header>
+
+      <section class="vocab-toolbar card" aria-label="Vocabulary controls">
+        <div>
+          <p class="eyebrow">Your deck</p>
+          <h2><span id="deckCount">{{ words|length }}</span> words to explore</h2>
+        </div>
+        <div class="vocab-controls">
+          <label class="sr-only" for="wordSearch">Search vocabulary</label>
+          <input id="wordSearch" type="search" placeholder="Search Japanese or meaning" />
+          <label class="sr-only" for="posFilter">Filter by part of speech</label>
+          <select id="posFilter">
+            <option value="all">All types</option>
+            <option value="noun">Nouns</option>
+            <option value="verb">Verbs</option>
+            <option value="adjective">Adjectives</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </section>
+
+      {% if words %}
+        <section class="vocab-study-grid">
+          <div class="card flashcard-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Flashcard</p>
+                <h2 id="cardPosition">Card 1 of {{ words|length }}</h2>
+              </div>
+              <span class="progress-label" id="knownLabel">0 known</span>
+            </div>
+            <button class="flashcard" id="flashcard" type="button" aria-label="Show answer">
+              <span class="flashcard-face flashcard-front">
+                <span class="word-japanese" id="cardJapanese"></span>
+                <span class="word-reading" id="cardReading"></span>
+                <span class="flip-hint">Show meaning</span>
+              </span>
+              <span class="flashcard-face flashcard-back" aria-hidden="true">
+                <span class="word-meaning" id="cardMeaning"></span>
+                <span class="word-example" id="cardExample"></span>
+                <span class="flip-hint">Show Japanese</span>
+              </span>
+            </button>
+            <div class="flashcard-actions">
+              <button class="learn-button" id="learningButton" type="button">Still learning</button>
+              <button class="know-button" id="knownButton" type="button">I know it</button>
+            </div>
+            <p class="deck-status" id="deckStatus" role="status">Tap the card to reveal the answer.</p>
+          </div>
+
+          <div class="card word-list-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Browse</p>
+                <h2>Word list</h2>
+              </div>
+              <span class="history-count" id="visibleCount">{{ words|length }}</span>
+            </div>
+            <div class="word-list" id="wordList">
+              {% for word in words %}
+                <button class="word-row" type="button" data-index="{{ loop.index0 }}" data-pos="{{ word.part_of_speech|lower }}" data-search="{{ (word.japanese ~ ' ' ~ word.reading ~ ' ' ~ word.meaning)|lower }}">
+                  <span><strong>{{ word.japanese }}</strong><small>{{ word.reading }}</small></span>
+                  <span class="word-row-meaning">{{ word.meaning }}</span>
+                </button>
+              {% endfor %}
+            </div>
+          </div>
+        </section>
+      {% else %}
+        <section class="card empty-vocab">
+          <p class="eyebrow">Deck is empty</p>
+          <h2>Import your JLPT N5 vocabulary to begin.</h2>
+          <p>Put <strong>jlpt_n5-vocab.csv</strong> or <strong>jlpt_n5-vocab.json</strong> in the project folder, then run <strong>python import_vocab.py</strong>.</p>
+        </section>
+      {% endif %}
+    </main>
+    <script>
+      const deck = {{ word_data | tojson }};
+      const card = document.getElementById('flashcard');
+      if (card) {
+        let current = 0;
+        let showingAnswer = false;
+        const known = new Set(JSON.parse(localStorage.getItem('n5-known-words') || '[]'));
+        const japanese = document.getElementById('cardJapanese');
+        const reading = document.getElementById('cardReading');
+        const meaning = document.getElementById('cardMeaning');
+        const example = document.getElementById('cardExample');
+        const position = document.getElementById('cardPosition');
+        const status = document.getElementById('deckStatus');
+        const knownLabel = document.getElementById('knownLabel');
+        const rows = [...document.querySelectorAll('.word-row')];
+        const search = document.getElementById('wordSearch');
+        const filter = document.getElementById('posFilter');
+
+        function renderCard() {
+          const word = deck[current];
+          japanese.textContent = word.japanese;
+          reading.textContent = word.reading || 'Reading not provided';
+          meaning.textContent = word.meaning;
+          example.textContent = word.example || 'Keep this word in your next study session.';
+          position.textContent = `Card ${current + 1} of ${deck.length}`;
+          knownLabel.textContent = `${known.size} known`;
+          card.classList.toggle('is-known', known.has(word.japanese));
+          card.classList.remove('flipped');
+          showingAnswer = false;
+        }
+
+        function moveTo(index, message) {
+          current = (index + deck.length) % deck.length;
+          renderCard();
+          if (message) status.textContent = message;
+        }
+
+        function markWord(isKnown) {
+          const word = deck[current];
+          if (isKnown) known.add(word.japanese); else known.delete(word.japanese);
+          localStorage.setItem('n5-known-words', JSON.stringify([...known]));
+          moveTo(current + 1, isKnown ? 'Marked known. Next card.' : 'Keep this one in your review pile.');
+        }
+
+        card.addEventListener('click', () => {
+          showingAnswer = !showingAnswer;
+          card.classList.toggle('flipped', showingAnswer);
+          status.textContent = showingAnswer ? 'Choose a confidence level below.' : 'Tap the card to reveal the answer.';
+        });
+        document.getElementById('knownButton').addEventListener('click', () => markWord(true));
+        document.getElementById('learningButton').addEventListener('click', () => markWord(false));
+        rows.forEach((row) => row.addEventListener('click', () => moveTo(Number(row.dataset.index))));
+        function filterRows() {
+          const query = search.value.trim().toLowerCase();
+          const type = filter.value;
+          let visible = 0;
+          rows.forEach((row) => {
+            const typeMatch = type === 'all' || (type === 'other' ? !['noun', 'verb', 'adjective'].some((item) => row.dataset.pos.includes(item)) : row.dataset.pos.includes(type));
+            const matches = typeMatch && row.dataset.search.includes(query);
+            row.hidden = !matches;
+            if (matches) visible += 1;
+          });
+          document.getElementById('visibleCount').textContent = visible;
+        }
+        search.addEventListener('input', filterRows);
+        filter.addEventListener('change', filterRows);
+        document.addEventListener('keydown', (event) => {
+          if (event.target.matches('input, select')) return;
+          if (event.key === ' ') { event.preventDefault(); card.click(); }
+          if (event.key === 'ArrowRight') moveTo(current + 1);
+          if (event.key === 'ArrowLeft') moveTo(current - 1);
+        });
+        renderCard();
+      }
+    </script>
+  </body>
+</html>

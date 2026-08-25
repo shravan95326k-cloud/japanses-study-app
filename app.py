@@ -51,6 +51,14 @@ class Todo(db.Model):
     is_done = db.Column(db.Boolean, default=False, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
 
+class Vocabulary(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    japanese = db.Column(db.String(100), nullable=False, unique=True)
+    reading = db.Column(db.String(100), nullable=False, default='')
+    meaning = db.Column(db.String(300), nullable=False)
+    part_of_speech = db.Column(db.String(80), nullable=False, default='')
+    example = db.Column(db.String(300), nullable=False, default='')
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -128,6 +136,15 @@ def history():
     todos = (Todo.query.filter_by(user_id=current_user.id)
              .order_by(Todo.created_at.desc()).all())
     return render_template('history.html', sessions=sessions, todos=todos)
+
+@app.route('/vocabulary')
+@login_required
+def vocabulary():
+    words = Vocabulary.query.order_by(Vocabulary.id).all()
+    word_data = [{'japanese': word.japanese, 'reading': word.reading,
+                  'meaning': word.meaning, 'part_of_speech': word.part_of_speech,
+                  'example': word.example} for word in words]
+    return render_template('vocabulary.html', words=words, word_data=word_data)
 
 def build_dashboard():
     today = datetime.utcnow().date()
