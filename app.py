@@ -123,6 +123,64 @@ def home():
     todos = Todo.query.filter_by(user_id=current_user.id).order_by(Todo.created_at.desc()).all()
     return render_template('index.html', stats=build_dashboard(), todos=todos)
 
+@app.route('/conversation')
+@login_required
+def conversation():
+    return render_template('conversation.html')
+
+CONVERSATION_CONTENT = {
+    'N5': {
+        'reply': 'こんにちは！今日はどうしましたか。ゆっくり日本語で話しましょう。',
+        'passage': '毎朝、七時に起きます。水を飲んで、パンを食べます。それから、学校へ行きます。',
+        'translation': 'Every morning, I wake up at seven. I drink water and eat bread. Then, I go to school.',
+        'grammar': {'pattern': '〜て、それから〜', 'meaning': 'Do A, and then do B.', 'example': '顔を洗って、それから朝ごはんを食べます。'},
+    },
+    'N4': {
+        'reply': 'いいですね。もう少し詳しく教えてください。理由も日本語で説明してみましょう。',
+        'passage': '先週、友達と京都へ行きました。雨が降っていましたが、古いお寺を見学できてよかったです。',
+        'translation': 'Last week, I went to Kyoto with a friend. It was raining, but I was glad we could visit an old temple.',
+        'grammar': {'pattern': '〜が、〜', 'meaning': 'Although / but; connect two contrasting ideas.', 'example': '難しかったですが、楽しかったです。'},
+    },
+    'N3': {
+        'reply': 'なるほど、面白い意見ですね。具体例を一つ加えて、自然な文章にしてみませんか。',
+        'passage': '便利な技術が増える一方で、人と直接話す機会が減っているように感じます。大切なのは、目的に合わせて使い分けることです。',
+        'translation': 'While convenient technology is increasing, I feel that opportunities to talk directly with people are decreasing. What matters is using it according to the purpose.',
+        'grammar': {'pattern': '〜一方で', 'meaning': 'On the other hand; while one situation changes, another contrasts with it.', 'example': '便利な一方で、注意も必要です。'},
+    },
+}
+
+def review_japanese(text, level):
+    suggestions = []
+    if '私わ' in text:
+        suggestions.append({'original': '私わ', 'corrected': '私は', 'reason': 'Use は as the topic particle.'})
+    if 'これわ' in text:
+        suggestions.append({'original': 'これわ', 'corrected': 'これは', 'reason': 'The topic particle is written は, pronounced wa.'})
+    if text.endswith('ですです'):
+        suggestions.append({'original': 'ですです', 'corrected': 'です', 'reason': 'Avoid repeating the polite ending.'})
+    if '食べるです' in text or '行くです' in text:
+        original = '食べるです' if '食べるです' in text else '行くです'
+        corrected = '食べます' if original == '食べるです' else '行きます'
+        suggestions.append({'original': original, 'corrected': corrected, 'reason': 'Use the polite ます form with a verb.'})
+    return {'suggestions': suggestions, 'corrected_text': text if not suggestions else text.replace(suggestions[0]['original'], suggestions[0]['corrected'], 1), 'level': level}
+
+@app.route('/api/conversation', methods=['POST'])
+@login_required
+def conversation_api():
+    payload = request.get_json(silent=True) or {}
+    message = str(payload.get('message', '')).strip()
+    level = str(payload.get('level', 'N5')).upper()
+    mode = str(payload.get('mode', 'chat')).lower()
+    if level not in CONVERSATION_CONTENT:
+        return jsonify({'error': 'Choose N5, N4, or N3.'}), 400
+    if (not message and mode != 'reading') or len(message) > 500:
+        return jsonify({'error': 'Write a message between 1 and 500 characters.'}), 400
+    content = CONVERSATION_CONTENT[level]
+    if mode == 'reading':
+        return jsonify({'type': 'reading', 'passage': content['passage'], 'translation': content['translation'], 'grammar': content['grammar']})
+    if mode == 'correct':
+        return jsonify({'type': 'correction', **review_japanese(message, level)})
+    return jsonify({'type': 'chat', 'reply': content['reply'], 'grammar': content['grammar']})
+
 @app.route('/todo/add', methods=['POST'])
 @login_required
 def add_todo():

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Japanese Practice Chat | Japan Study Companion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <main class="container conversation-page">
+      <header class="study-header">
+        <div>
+          <p class="eyebrow">Guided Japanese practice</p>
+          <h1>Conversation dojo</h1>
+          <p class="greeting">Talk, read, and refine your Japanese in small steps.</p>
+        </div>
+        <div class="study-header-actions">
+          <a class="button-link" href="{{ url_for('home') }}">Dashboard</a>
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" title="Switch theme"><span id="themeIcon">&#9790;</span></button>
+        </div>
+      </header>
+
+      <section class="conversation-layout">
+        <aside class="conversation-sidebar card">
+          <p class="eyebrow">Your practice</p>
+          <h2>Choose a level</h2>
+          <div class="level-picker" role="group" aria-label="Japanese level">
+            <button type="button" data-level="N5" class="active"><strong>N5</strong><span>Everyday basics</span></button>
+            <button type="button" data-level="N4"><strong>N4</strong><span>Connected ideas</span></button>
+            <button type="button" data-level="N3"><strong>N3</strong><span>Natural opinions</span></button>
+          </div>
+          <div class="dojo-tip">
+            <span class="dojo-mark" aria-hidden="true">話</span>
+            <p><strong>Try a complete sentence.</strong><br />The coach will reply and point out a useful grammar pattern.</p>
+          </div>
+        </aside>
+
+        <section class="conversation-main card" aria-labelledby="modeHeading">
+          <div class="conversation-heading">
+            <div><p class="eyebrow">Practice room <span id="levelLabel">N5</span></p><h2 id="modeHeading">Speak with your coach</h2></div>
+            <div class="mode-tabs" role="tablist" aria-label="Practice mode">
+              <button class="active" data-mode="chat" role="tab" type="button">Chat</button>
+              <button data-mode="reading" role="tab" type="button">Reading</button>
+              <button data-mode="correct" role="tab" type="button">Correct me</button>
+            </div>
+          </div>
+
+          <div class="chat-log" id="chatLog" aria-live="polite">
+            <div class="message coach-message"><span class="message-label">Coach</span><p>こんにちは！今日はどうしましたか。ゆっくり日本語で話しましょう。</p></div>
+          </div>
+          <div class="learning-result" id="learningResult" hidden></div>
+
+          <form class="chat-form" id="chatForm">
+            <label for="messageInput" id="inputLabel">Write your reply in Japanese</label>
+            <div class="chat-input-row"><textarea id="messageInput" rows="3" maxlength="500" placeholder="例：今日は図書館で勉強します。" required></textarea><button type="submit" id="sendButton">Send</button></div>
+            <div class="chat-form-footer"><span id="modeHint">Use Japanese kana, kanji, or a mix.</span><span id="characterCount">0 / 500</span></div>
+          </form>
+        </section>
+      </section>
+    </main>
+    <script>
+      const state = { level: 'N5', mode: 'chat' };
+      const chatLog = document.getElementById('chatLog');
+      const result = document.getElementById('learningResult');
+      const form = document.getElementById('chatForm');
+      const input = document.getElementById('messageInput');
+      const sendButton = document.getElementById('sendButton');
+      const modeHeading = document.getElementById('modeHeading');
+      const inputLabel = document.getElementById('inputLabel');
+      const modeHint = document.getElementById('modeHint');
+      const headings = { chat: 'Speak with your coach', reading: 'Read a short passage', correct: 'Polish your Japanese' };
+      const labels = { chat: 'Write your reply in Japanese', reading: 'Press start to reveal the passage', correct: 'Paste a sentence you want checked' };
+      const hints = { chat: 'Use Japanese kana, kanji, or a mix.', reading: 'Read aloud, then check the translation and grammar.', correct: 'The coach checks common beginner patterns.' };
+      function escapeHtml(value) { const div = document.createElement('div'); div.textContent = value; return div.innerHTML; }
+      function addMessage(kind, label, text) { chatLog.insertAdjacentHTML('beforeend', `<div class="message ${kind}-message"><span class="message-label">${label}</span><p>${escapeHtml(text)}</p></div>`); chatLog.scrollTop = chatLog.scrollHeight; }
+      function renderGrammar(grammar) { return `<div class="grammar-callout"><span class="eyebrow">Useful grammar</span><strong>${escapeHtml(grammar.pattern)}</strong><p>${escapeHtml(grammar.meaning)}</p><small>${escapeHtml(grammar.example)}</small></div>`; }
+      function setMode(mode) { state.mode = mode; document.querySelectorAll('.mode-tabs button').forEach(button => button.classList.toggle('active', button.dataset.mode === mode)); modeHeading.textContent = headings[mode]; inputLabel.textContent = labels[mode]; modeHint.textContent = hints[mode]; sendButton.textContent = mode === 'reading' ? 'Start reading' : mode === 'correct' ? 'Check sentence' : 'Send'; input.placeholder = mode === 'correct' ? '例：私わ学生です。' : mode === 'reading' ? 'You can leave this empty' : '例：今日は図書館で勉強します。'; input.required = mode !== 'reading'; result.hidden = true; }
+      document.querySelectorAll('.mode-tabs button').forEach(button => button.addEventListener('click', () => setMode(button.dataset.mode)));
+      document.querySelectorAll('.level-picker button').forEach(button => button.addEventListener('click', () => { state.level = button.dataset.level; document.querySelectorAll('.level-picker button').forEach(item => item.classList.toggle('active', item === button)); document.getElementById('levelLabel').textContent = state.level; }));
+      input.addEventListener('input', () => { document.getElementById('characterCount').textContent = `${input.value.length} / 500`; });
+      form.addEventListener('submit', async event => { event.preventDefault(); sendButton.disabled = true; result.hidden = true; const message = input.value.trim(); if (state.mode !== 'reading' && !message) { sendButton.disabled = false; return; } if (state.mode !== 'reading') addMessage('learner', 'You', message); try { const response = await fetch('/api/conversation', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ level: state.level, mode: state.mode, message }) }); const data = await response.json(); if (!response.ok) throw new Error(data.error); if (state.mode === 'chat') { addMessage('coach', 'Coach', data.reply); result.innerHTML = renderGrammar(data.grammar); } else if (state.mode === 'reading') { result.innerHTML = `<div class="passage-card"><span class="eyebrow">${state.level} reading</span><p class="japanese-passage">${escapeHtml(data.passage)}</p><details><summary>Show translation</summary><p>${escapeHtml(data.translation)}</p></details></div>${renderGrammar(data.grammar)}`; } else { const suggestions = data.suggestions.length ? data.suggestions.map(item => `<li><del>${escapeHtml(item.original)}</del> <strong>${escapeHtml(item.corrected)}</strong><span>${escapeHtml(item.reason)}</span></li>`).join('') : '<li><strong>よくできました！</strong><span>No common mistakes found. Keep practicing.</span></li>'; result.innerHTML = `<div class="correction-card"><span class="eyebrow">Coach feedback</span><p class="corrected-text">${escapeHtml(data.corrected_text)}</p><ul>${suggestions}</ul></div>`; } result.hidden = false; input.value = ''; input.dispatchEvent(new Event('input')); } catch (error) { result.innerHTML = `<p class="error-text">${escapeHtml(error.message)}</p>`; result.hidden = false; } finally { sendButton.disabled = false; } });
+      const themeToggle = document.getElementById('themeToggle'); const themeIcon = document.getElementById('themeIcon'); function applyDarkMode(enabled) { document.body.classList.toggle('dark-mode', enabled); localStorage.setItem('japanese-study-theme', enabled ? 'dark' : 'light'); themeIcon.textContent = enabled ? '\\u2600' : '\\u263e'; } themeToggle.addEventListener('click', () => applyDarkMode(!document.body.classList.contains('dark-mode'))); applyDarkMode(localStorage.getItem('japanese-study-theme') === 'dark');
+    </script>
+  </body>
+</html>
